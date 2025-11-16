@@ -1,0 +1,19 @@
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Local data
+downloads/
+processed/
+reports/
+
+# Python caches
+__pycache__/
+*.pyc

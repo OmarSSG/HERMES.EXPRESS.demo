@@ -9,9 +9,9 @@ $clave_db = isset($_ENV['DB_PASS']) ? $_ENV['DB_PASS'] : '';
 $base_datos = isset($_ENV['DB_NAME']) && $_ENV['DB_NAME'] !== '' ? $_ENV['DB_NAME'] : 'hermes_express';
 
 // Configuración de WhatsApp (usando Twilio)
-$twilio_account_sid = isset($_ENV['TWILIO_ACCOUNT_SID']) && $_ENV['TWILIO_ACCOUNT_SID'] !== '' ? $_ENV['TWILIO_ACCOUNT_SID'] : 'AC8ccfd5ecd15ff03826bb86724f5747e6';
-$twilio_auth_token = isset($_ENV['TWILIO_AUTH_TOKEN']) && $_ENV['TWILIO_AUTH_TOKEN'] !== '' ? $_ENV['TWILIO_AUTH_TOKEN'] : '23ea2f2d07def6bb9b9f1b9fa7b02b3b';
-$twilio_whatsapp_number = isset($_ENV['TWILIO_WHATSAPP_NUMBER']) && $_ENV['TWILIO_WHATSAPP_NUMBER'] !== '' ? $_ENV['TWILIO_WHATSAPP_NUMBER'] : '+14155238886';
+$twilio_account_sid = isset($_ENV['TWILIO_ACCOUNT_SID']) ? $_ENV['TWILIO_ACCOUNT_SID'] : '';
+$twilio_auth_token = isset($_ENV['TWILIO_AUTH_TOKEN']) ? $_ENV['TWILIO_AUTH_TOKEN'] : '';
+$twilio_whatsapp_number = isset($_ENV['TWILIO_WHATSAPP_NUMBER']) ? $_ENV['TWILIO_WHATSAPP_NUMBER'] : '';
 
 // Configuración de directorios
 $downloads_dir = __DIR__ . '/../downloads';
