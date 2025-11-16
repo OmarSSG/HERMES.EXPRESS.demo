@@ -1,0 +1,656 @@
+/* Estilos específicos para el panel de administración responsivo */
+
+/* Estilos para el mapa */
+.mapa-container {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    background-color: #e8eaf6;
+    transition: all 0.3s ease;
+}
+
+/* Panel de información del mapa */
+#info-panel {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-width: 320px;
+    width: 90%;
+    font-size: 14px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Estilos para el mensaje de carga */
+.cargando-ubicacion {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.cargando-ubicacion .spinner {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto 10px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    animation: spin 1s ease-in-out infinite;
+}
+
+/* Estilos para la información de ubicación */
+.info-ubicacion {
+    line-height: 1.6;
+}
+
+.info-ubicacion h4 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-ubicacion .coordenadas {
+    font-family: 'Courier New', monospace;
+    background: #f8f9fa;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-copiar {
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.btn-copiar:hover {
+    background: rgba(52, 152, 219, 0.1);
+    color: #2980b9;
+}
+
+/* Estilos para mensajes de error */
+.error-ubicacion {
+    color: #e74c3c;
+}
+
+.error-ubicacion h4 {
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.acciones-error {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Animaciones */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Indicador de precisión */
+.ayuda-precision {
+    margin: 10px 0 0 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ayuda-precision i {
+    font-size: 16px;
+}
+
+/* Estilos para el botón de ruta */
+#iniciarRutaBtn {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+#iniciarRutaBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#iniciarRutaBtn:active {
+    transform: translateY(0);
+}
+
+/* Estilos para el panel de detalles de la ruta */
+.detalle-ruta {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.detalle-ruta h4 {
+    margin-top: 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detalle-ruta h4 i {
+    color: var(--primary-color);
+}
+
+/* Barra de progreso */
+.progreso {
+    background: #f0f0f0;
+    border-radius: 10px;
+    height: 20px;
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.barra-progreso {
+    background: var(--primary-color);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.progreso span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Estadísticas de la ruta */
+.estadisticas-ruta {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.estadistica {
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 6px;
+}
+
+.estadistica i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.estadistica .valor {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    color: #333;
+}
+
+.estadistica .etiqueta {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Botones de acción */
+.acciones-ruta {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Estilos para cuando no hay ruta */
+.sin-ruta {
+    text-align: center;
+    padding: 30px 20px;
+    color: #666;
+}
+
+.sin-ruta i {
+    font-size: 3rem;
+    color: #ccc;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.sin-ruta h4 {
+    margin: 10px 0;
+    color: #444;
+}
+
+/* Indicador de carga */
+.cargando {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.cargando .spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 15px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ventana de información del marcador */
+.info-window {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 250px;
+}
+
+.info-window h4 {
+    margin: 0 0 10px 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.info-window p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.info-window .acciones-info {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-window .btn-pequeno {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Badges de estado */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.completada {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge.en-curso {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .estadisticas-ruta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .acciones-ruta {
+        flex-direction: column;
+    }
+    
+    .detalle-ruta {
+        padding: 15px;
+    }
+}
+
+/* Asegurar que el contenedor principal ocupe todo el ancho */
+.contenedor {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    padding-left: 0;
+    transition: var(--transition);
+}
+
+/* Estilos para la barra lateral */
+.barra-lateral {
+    width: 280px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: var(--transition);
+    transform: translateX(-100%);
+}
+
+.barra-lateral.activa {
+    transform: translateX(0);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de menú móvil */
+.menu-movil {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.menu-movil:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Contenido principal */
+.contenido-principal {
+    flex: 1;
+    padding: 20px;
+    transition: var(--transition);
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Estilos para el contenedor del mapa */
+.mapa-container {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+#info-panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+/* Estilos para tablas responsivas */
+.tabla-container {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -15px 20px;
+    width: calc(100% + 30px);
+}
+
+table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+}
+
+/* Estilos para tarjetas de métricas */
+.metricas-principales {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tarjeta-metrica {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--transition);
+}
+
+.tarjeta-metrica:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Media queries para diferentes tamaños de pantalla */
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .contenedor {
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .barra-lateral {
+        transform: translateX(-100%);
+        width: 280px;
+    }
+    
+    .barra-lateral.activa {
+        transform: translateX(0);
+    }
+    
+    .menu-movil {
+        display: flex;
+    }
+    
+    .contenido-principal {
+        padding: 80px 15px 15px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    
+    .contenido-principal.desplazado {
+        transform: translateX(280px);
+    }
+    
+    /* Ajustes para tablas en móviles */
+    .tabla-container {
+        margin: 0 auto 20px;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+    
+    /* Estilo para celdas en móviles */
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+    
+    /* Ocultar encabezados en móviles */
+    thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+    
+    /* Hacer filas en bloques para móviles */
+    tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 15px;
+    }
+    
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border: none;
+        border-bottom: 1px dashed #eee;
+        white-space: normal;
+    }
+    
+    tbody td:last-child {
+        border-bottom: none;
+    }
+    
+    /* Ajustar botones en móviles */
+    .btn-accion {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* Ajustar métricas para móviles */
+    .metricas-principales {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Ajustar formularios */
+    .formulario-extraccion,
+    .resultados-extraccion {
+        flex: 1 1 100%;
+    }
+    
+    .extraccion-contenedor {
+        flex-direction: column;
+    }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 992px) {
+    .metricas-principales {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Pantallas grandes */
+@media (min-width: 993px) {
+    .contenedor {
+        padding-left: 280px;
+    }
+    
+    .barra-lateral {
+        transform: translateX(0);
+    }
+    
+    .contenido-principal {
+        width: calc(100% - 280px);
+        margin-left: 0;
+    }
+    
+    .menu-movil {
+        display: none;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 1200px) {
+    .contenido-principal {
+        padding: 30px;
+    }
+    
+    .metricas-principales {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

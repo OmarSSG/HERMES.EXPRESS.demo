@@ -1,0 +1,122 @@
+/* Estilos específicos para el panel de empleado responsivo */
+
+/* Asegurar que el contenedor principal ocupe todo el ancho */
+.contenedor {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    padding-left: 0;
+    transition: var(--transition);
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .contenedor {
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .barra-lateral {
+        transform: translateX(-100%);
+        width: 280px;
+    }
+    
+    .barra-lateral.activa {
+        transform: translateX(0);
+    }
+    
+    .menu-movil {
+        display: flex;
+    }
+    
+    .contenido-principal {
+        padding: 80px 15px 15px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    
+    /* Ajustes para tablas en móviles */
+    .tabla-container {
+        margin: 0 auto 20px;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+    
+    /* Estilo para celdas en móviles */
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+    
+    /* Ajustar tarjetas de métricas */
+    .metricas-principales {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+    
+    /* Ajustar formularios */
+    .formulario-extraccion,
+    .resultados-extraccion {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+    
+    .extraccion-contenedor {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 992px) {
+    .metricas-principales {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contenido-principal {
+        padding: 30px 20px;
+    }
+}
+
+/* Pantallas grandes */
+@media (min-width: 993px) {
+    .contenedor {
+        padding-left: 280px;
+    }
+    
+    .barra-lateral {
+        transform: translateX(0);
+    }
+    
+    .contenido-principal {
+        width: calc(100% - 280px);
+        margin-left: 0;
+    }
+    
+    .menu-movil {
+        display: none;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 1200px) {
+    .contenido-principal {
+        padding: 30px;
+        max-width: 1400px;
+        margin: 0 auto 0 280px;
+    }
+    
+    .metricas-principales {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

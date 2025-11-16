@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#007bff">
+    <meta name="description" content="Panel de Empleado HERMES EXPRESS LOGISTIC">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>HERMES - Panel de Empleado</title>
+    <!-- Precargar CSS crítico -->
+    <link rel="stylesheet" href="css/paneladmin.css">
+    <link rel="stylesheet" href="css/paneladmin-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/rutas.constants.js"></script>
+</head>
+<body>
+    <div class="contenedor">
+        <!-- Botón de menú móvil -->
+        <button class="menu-movil" id="btnMenuMovil" aria-label="Menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Barra lateral -->
+        <nav class="barra-lateral" id="barraLateral">
+            <div class="logo">
+                <h2>HERMES EXPRESS LOGISTIC</h2>
+            </div>
+            
+            <ul class="menu">
+                <li><a href="#" class="activo" data-seccion="inicio" id="menu-inicio">
+                    <span class="icono">🏠</span>Inicio
+                </a></li>
+                <li><a href="#" data-seccion="mis-paquetes" id="menu-mis-paquetes">
+                    <span class="icono">📦</span>Mis Paquetes
+                </a></li>
+                <li><a href="#" data-seccion="entregar" id="menu-entregar">
+                    <span class="icono">✅</span>Entregar
+                </a></li>
+                <li><a href="#" data-seccion="ruta" id="menu-ruta">
+                    <span class="icono">🗺️</span>Mi Ruta
+                </a></li>
+                <li><a href="#" data-seccion="perfil" id="menu-perfil">
+                    <span class="icono">👤</span>Perfil
+                </a></li>
+            </ul>
+            
+            <div class="usuario-info">
+                <div class="avatar">👤</div>
+                <div class="info">
+                    <p id="nombreUsuario">Empleado</p>
+                    <small>Empleado</small>
+                </div>
+                <button onclick="cerrarSesion()" class="btn-salir">🚪</button>
+            </div>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="contenido-principal">
+            <header class="cabecera">
+                <h1 id="tituloSeccion">Panel de Empleado</h1>
+                <div class="acciones">
+                    <button class="btn btn-secundario" onclick="verNotificaciones()">
+                        <i class="fas fa-bell"></i> Notificaciones
+                    </button>
+                </div>
+            </header>
+
+            <section id="seccion-inicio" class="seccion activa">
+                <div class="metricas-principales">
+                    <div class="tarjeta-metrica">
+                        <div class="icono-metrica">📦</div>
+                        <div class="info-metrica">
+                            <h3 id="misPaquetes">0</h3>
+                            <p>Mis Paquetes</p>
+                        </div>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <div class="icono-metrica">🚛</div>
+                        <div class="info-metrica">
+                            <h3 id="enRuta">0</h3>
+                            <p>En Ruta</p>
+                        </div>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <div class="icono-metrica">✅</div>
+                        <div class="info-metrica">
+                            <h3 id="entregadosHoy">0</h3>
+                            <p>Entregados Hoy</p>
+                        </div>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <div class="icono-metrica">⏰</div>
+                        <div class="info-metrica">
+                            <h3 id="pendientes">0</h3>
+                            <p>Pendientes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graficos-admin">
+                    <div class="tareas-hoy">
+                        <h3>Tareas de Hoy</h3>
+                        <div id="listaTareas" class="lista-actividad">
+                            <!-- Se llena dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="estado-vehiculo">
+                        <h3>Mi Vehículo</h3>
+                        <div id="infoVehiculo" class="info-vehiculo">
+                            <!-- Se llena dinámicamente -->
+                        </div>
+                        <div class="acciones-vehiculo">
+                            <button id="btnIniciarRutaVehiculo" class="btn btn-primario" onclick="iniciarRuta()">
+                                <i class="fas fa-route"></i> Iniciar Ruta
+                            </button>
+                            <button class="btn btn-secundario" onclick="reportarProblema()">
+                                <i class="fas fa-exclamation-triangle"></i> Reportar Problema
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="seccion-mis-paquetes" class="seccion">
+                <div class="filtros">
+                    <input type="text" id="buscarMiPaquete" placeholder="Buscar por código o destinatario...">
+                    <select id="filtroMiEstado">
+                        <option value="">Todos los estados</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="en_transito">En Tránsito</option>
+                        <option value="entregado">Entregado</option>
+                    </select>
+                </div>
+                
+                <div class="tabla-container">
+                    <table id="tablaMisPaquetes">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Destinatario</th>
+                                <th>Dirección</th>
+                                <th>Estado</th>
+                                <th>Peso</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaMisPaquetes">
+                            <!-- Se llena dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección Entregar -->
+            <section id="seccion-entregar" class="seccion">
+                <div class="panel-entrega">
+                    <h3>Confirmar Entrega</h3>
+                    <form id="formEntrega">
+                        <div class="form-grupo">
+                            <label>Código del Paquete:</label>
+                            <input type="text" id="codigoEntrega" placeholder="Escanear o escribir código" required>
+                            <button type="button" class="btn-escanear" onclick="escanearCodigo()">📷</button>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Nombre del Receptor:</label>
+                            <input type="text" id="nombreReceptor" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Documento del Receptor:</label>
+                            <input type="text" id="documentoReceptor" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Observaciones:</label>
+                            <textarea id="observaciones" placeholder="Observaciones adicionales..."></textarea>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Foto de Entrega:</label>
+                            <input type="file" id="fotoEntrega" accept="image/*" capture="camera">
+                        </div>
+                        <div class="form-acciones">
+                            <button type="submit" class="btn btn-primario">Confirmar Entrega</button>
+                            <button type="button" class="btn btn-secundario" onclick="limpiarFormEntrega()">Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Sección Mi Ruta -->
+            <section id="seccion-ruta" class="seccion">
+                <div class="info-ruta">
+                    <h3>Ruta del Día</h3>
+                    <div id="detallesRuta" class="detalles-ruta">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+                
+                <div class="mapa-ruta">
+                    <h3>Mapa de Entregas</h3>
+                    <div id="mapaContainer" class="mapa-container">
+                        <div id="map" style="height: 100%; width: 100%;"></div>
+                        <div id="info-panel">
+                            <button id="iniciarRutaBtn" class="btn btn-primario" onclick="iniciarRuta()">
+                                <i class="fas fa-route"></i> Iniciar Ruta
+                            </button>
+                            <div id="distancia"></div>
+                            <div id="tiempo"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lista-entregas">
+                    <h3>Entregas Programadas</h3>
+                    <div id="listaEntregas" class="entregas-programadas">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Perfil -->
+            <section id="seccion-perfil" class="seccion">
+                <div class="perfil-empleado">
+                    <h3>Mi Perfil</h3>
+                    <form id="formPerfil">
+                        <div class="form-grupo">
+                            <label>Nombre:</label>
+                            <input type="text" id="perfilNombre" readonly>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Usuario:</label>
+                            <input type="text" id="perfilUsuario" readonly>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Email:</label>
+                            <input type="email" id="perfilEmail" readonly>
+                        </div>
+                        <div class="form-grupo">
+                            <p class="nota-perfil">* Los datos del perfil son gestionados por el sistema</p>
+                        </div>
+                        <!-- Botón de actualización de perfil eliminado -->
+                    </form>
+                </div>
+                
+                <div class="estadisticas-empleado">
+                    <h3>Mis Estadísticas</h3>
+                    <div id="estadisticasContainer" class="estadisticas-container">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Carga del panel JS antes de Google Maps para que exista initMap como callback -->
+    <script src="js/panelempleado.js"></script>
+    <!-- Google Maps API (reemplaza TU_API_KEY con tu clave válida) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhKq8glWDGij47iJZy2_RB8jan9D1V-Sk&libraries=geometry,places&callback=initMap&loading=async" async defer></script>
+    <script>
+        // Cerrar sesión
+        function cerrarSesion() {
+            if (confirm('¿Está seguro que desea cerrar sesión?')) {
+                // Limpiar el almacenamiento local si es necesario
+                if (typeof(Storage) !== 'undefined') {
+                    localStorage.removeItem('sesion_activa');
+                    sessionStorage.clear();
+                }
+                
+                // Realizar la petición de cierre de sesión
+                fetch('php/cerrar_sesion.php', {
+                    method: 'GET',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Cache-Control': 'no-cache, no-store',
+                        'Pragma': 'no-cache'
+                    }
+                })
+                .then(response => {
+                    // Asegurarse de que la redirección ocurra incluso si hay un error en la respuesta
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    // Forzar recarga sin caché
+                    window.location.replace('login.html');
+                })
+                .catch(error => {
+                    console.error('Error al cerrar sesión:', error);
+                    // Redirigir de todas formas
+                    window.location.replace('login.html');
+                });
+            }
+        }
+
+        // Código para el menú móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnMenu = document.getElementById('btnMenuMovil');
+            const barraLateral = document.getElementById('barraLateral');
+            const contenidoPrincipal = document.querySelector('.contenido-principal');
+            let menuAbierto = false;
+
+            function toggleMenu() {
+                menuAbierto = !menuAbierto;
+                barraLateral.classList.toggle('activa', menuAbierto);
+                contenidoPrincipal.classList.toggle('desplazado', menuAbierto);
+                document.body.style.overflow = menuAbierto ? 'hidden' : '';
+                
+                // Cambiar ícono
+                const icono = btnMenu.querySelector('i');
+                if (menuAbierto) {
+                    icono.classList.remove('fa-bars');
+                    icono.classList.add('fa-times');
+                } else {
+                    icono.classList.remove('fa-times');
+                    icono.classList.add('fa-bars');
+                }
+            }
+
+            // Evento para el botón del menú
+            if (btnMenu) {
+                btnMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+            }
+
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (menuAbierto && !barraLateral.contains(e.target) && e.target !== btnMenu) {
+                    toggleMenu();
+                }
+            });
+
+            // Cerrar menú al redimensionar la ventana
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 992 && menuAbierto) {
+                        toggleMenu();
+                    }
+                }, 250);
+            });
+
+            // Prevenir navegación hacia atrás después de cerrar sesión
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function(event) {
+                window.history.pushState(null, null, window.location.href);
+            };
+
+            // Verificar sesión al cargar la página
+            fetch('php/verificar_sesion.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.sesion_activa) {
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    // Verificar que sea empleado
+                    if (data.usuario.tipo !== 'empleado') {
+                        alert('Acceso denegado. Solo empleados pueden acceder a este panel.');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    // Actualizar información del usuario
+                    document.getElementById('nombreUsuario').textContent = data.usuario.nombre;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    window.location.href = 'login.html';
+                });
+        });
+    </script>
+    
+</body>
+</html>
+{{ ... }}

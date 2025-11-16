@@ -1,0 +1,500 @@
+[2025-10-09 05:30:28] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:29] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:32] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:32] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:32] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:33] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:37] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:37] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:38] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:38] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:38] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:38] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:38] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:38] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:38] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:38] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:30:39] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:39] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:39] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:30:39] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:35:14] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:35:15] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:35:17] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:35:17] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:37:16] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:37:16] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "error": "1054 (42S22): Unknown column 'data' in 'field list'"}]}
+[2025-10-09 05:43:01] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:43:02] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 2, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 2}]}
+[2025-10-09 05:43:04] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-09 05:43:05] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 2, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 2}]}
+[2025-10-12 16:38:07] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:38:08] CODE: 1
+OUT:
+El sistema no puede encontrar la ruta especificada.
+[2025-10-12 16:43:07] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 16:43:07] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 16:43:07] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 16:43:07] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 16:43:07] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:43:09] CODE: 1
+OUT:
+Traceback (most recent call last):
+  File "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py", line 6, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+[2025-10-12 16:43:09] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:43:10] CODE: 1
+OUT:
+Traceback (most recent call last):
+  File "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py", line 6, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+[2025-10-12 16:43:10] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:43:11] CODE: 1
+OUT:
+Traceback (most recent call last):
+  File "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py", line 6, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+[2025-10-12 16:48:48] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 16:48:48] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 16:48:48] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 16:48:48] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 16:48:48] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:49:00] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 16:49:01] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 16:49:01] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 16:49:01] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 16:49:01] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 16:49:01] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:49:05] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 16:52:07] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 16:52:07] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 16:52:07] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 16:52:07] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 16:52:07] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:52:28] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 16:52:42] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 16:52:42] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 16:52:42] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 16:52:42] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 16:52:42] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 16:52:49] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:03:11] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:03:11] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:03:11] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:03:11] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:03:11] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:03:20] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:03:25] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:03:25] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:03:25] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:03:25] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:03:25] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:03:28] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:04:25] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:04:25] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:04:25] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:04:25] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:04:25] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:04:30] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:35:13] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:35:13] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:35:13] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:35:13] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:35:13] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:35:25] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:44:10] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:44:10] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:44:10] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:44:10] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:44:10] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:44:13] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:48:12] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:48:12] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:48:12] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:48:12] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:48:12] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:48:23] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:54:17] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:54:17] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:54:17] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:54:17] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:54:17] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:54:30] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:54:49] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:54:49] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:54:49] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:54:49] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:54:49] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:54:52] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:56:35] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:56:35] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:56:35] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:56:35] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:56:35] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:56:38] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 17:59:49] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:59:49] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:59:49] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:59:49] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:59:49] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 17:59:53] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 18:10:59] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 18:10:59] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 18:10:59] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 18:10:59] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 18:10:59] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 18:11:09] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 18:18:51] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 18:18:51] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 18:18:51] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 18:18:51] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 18:18:51] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 18:18:56] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-12 18:23:37] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 18:23:37] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 18:23:37] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 18:23:37] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 18:23:37] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-12 18:23:48] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-18 18:48:03] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-18 18:48:06] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-19 16:06:27] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-19 16:06:27] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-19 16:06:27] SKIP inexistente: C:\Python313\python.exe
+[2025-10-19 16:06:27] SKIP inexistente: C:\Python312\python.exe
+[2025-10-19 16:06:27] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-19 16:06:42] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-19 17:40:30] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-19 17:40:30] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-19 17:40:30] SKIP inexistente: C:\Python313\python.exe
+[2025-10-19 17:40:30] SKIP inexistente: C:\Python312\python.exe
+[2025-10-19 17:40:30] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-19 17:40:34] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 356, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 356}]}
+[2025-10-27 17:24:52] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-27 17:24:52] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-27 17:24:52] SKIP inexistente: C:\Python313\python.exe
+[2025-10-27 17:24:52] SKIP inexistente: C:\Python312\python.exe
+[2025-10-27 17:24:52] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-10-27 17:25:08] CODE: 0
+OUT:
+{"exito": true, "mensaje": "Importación completada de 1 archivo(s) desde downloads/", "insertados": 0, "detalle": [{"archivo": "Detalle Pedidos.xlsx", "insertados": 0}]}
+[2025-11-02 00:01:10] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:01:12] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:01:12] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-02 00:01:12] SKIP inexistente: C:\Python313\python.exe
+[2025-11-02 00:01:12] SKIP inexistente: C:\Python312\python.exe
+[2025-11-02 00:01:12] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:01:13] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:01:13] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:01:13] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:01:13] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:01:14] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:07:54] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:07:55] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:07:55] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-02 00:07:55] SKIP inexistente: C:\Python313\python.exe
+[2025-11-02 00:07:55] SKIP inexistente: C:\Python312\python.exe
+[2025-11-02 00:07:55] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:07:55] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:07:55] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:07:56] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:07:56] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:07:56] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:09:12] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:09:13] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:09:13] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-02 00:09:13] SKIP inexistente: C:\Python313\python.exe
+[2025-11-02 00:09:13] SKIP inexistente: C:\Python312\python.exe
+[2025-11-02 00:09:13] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:09:14] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:09:14] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:09:14] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:09:14] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:09:15] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:24] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:24] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:24] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-02 00:10:24] SKIP inexistente: C:\Python313\python.exe
+[2025-11-02 00:10:24] SKIP inexistente: C:\Python312\python.exe
+[2025-11-02 00:10:24] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:25] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:25] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:26] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:26] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:26] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:34] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:35] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:35] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-02 00:10:35] SKIP inexistente: C:\Python313\python.exe
+[2025-11-02 00:10:35] SKIP inexistente: C:\Python312\python.exe
+[2025-11-02 00:10:35] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:35] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:35] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:36] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-02 00:10:36] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-02 00:10:36] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:38:11] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:38:14] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:38:14] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 15:38:14] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 15:38:14] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 15:38:14] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:38:14] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:38:14] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:38:15] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:38:15] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:38:15] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:05] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:05] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:05] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 15:49:05] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 15:49:05] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 15:49:05] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:06] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:06] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:06] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:06] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:07] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:17] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:18] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:18] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 15:49:18] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 15:49:18] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 15:49:18] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:18] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:18] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:19] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:19] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:19] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:52] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:53] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:53] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 15:49:53] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 15:49:53] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 15:49:53] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:53] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:53] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:54] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:49:54] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:49:54] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:46] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:53:47] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:47] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 15:53:47] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 15:53:47] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 15:53:47] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:53:47] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:47] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:53:48] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:48] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:53:48] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:58] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:53:58] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:58] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 15:53:58] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 15:53:58] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 15:53:58] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:53:59] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:59] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:53:59] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 15:53:59] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 15:54:00] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:00:51] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:00:51] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:00:51] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 16:00:51] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 16:00:51] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 16:00:51] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:00:52] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:00:52] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:00:52] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:00:52] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:00:53] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:06:30] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:06:31] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:06:31] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-12 16:06:31] SKIP inexistente: C:\Python313\python.exe
+[2025-11-12 16:06:31] SKIP inexistente: C:\Python312\python.exe
+[2025-11-12 16:06:31] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:06:31] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:06:31] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:06:32] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-12 16:06:32] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS\import_excel_to_db.py" 2>&1
+[2025-11-12 16:06:32] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio

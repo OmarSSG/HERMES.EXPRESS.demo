@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#007bff">
+  <meta name="description" content="Panel de administración HERMES EXPRESS LOGISTIC">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/img/icon-192x192.png">
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/paneladmin.css">
+  <link rel="stylesheet" href="css/paneladmin-responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+  <script src="js/rutas.constants.js"></script>
+  <script src="js/admin.shared.js?v=asig_fix_1" defer></script>
+
+  <title>HERMES - Panel de Control</title>
+</head>
+<body>
+  <div class="contenedor">
+    <button class="menu-movil" id="btnMenuMovil" aria-label="Menú">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav class="barra-lateral" id="barraLateral">
+      <div class="logo">
+        <h2>HERMES EXPRESS LOGISTIC</h2>
+      </div>
+      <ul class="menu">
+        <li><a href="javascript:void(0)" class="activo" onclick="mostrarSeccion('dashboard', this)"><span class="icono">📊</span>Dashboard</a></li>
+        <li><a href="javascript:void(0)" onclick="mostrarSeccion('paquetes', this)"><span class="icono">📦</span>Paquetes</a></li>
+        <li><a href="javascript:void(0)" onclick="mostrarSeccion('rutas', this)"><span class="icono">🗺️</span>Rutas</a></li>
+        <li><a href="javascript:void(0)" onclick="mostrarSeccion('asignacion', this)"><span class="icono">🧩</span>Asignación</a></li>
+      </ul>
+      <div class="usuario-info">
+        <div class="avatar">👤</div>
+        <div class="info">
+          <p id="nombreUsuario">Usuario</p>
+          <small>Asistente</small>
+        </div>
+        <button onclick="cerrarSesion()" class="btn-salir">🚪</button>
+      </div>
+    </nav>
+
+    <main class="contenido-principal">
+      <header class="cabecera">
+        <h1 id="tituloSeccion">Panel de Control</h1>
+        <div class="acciones"></div>
+      </header>
+
+      <section id="seccion-dashboard" class="seccion activa">
+        <div class="metricas-principales">
+          <div class="tarjeta-metrica">
+            <div class="icono-metrica">📦</div>
+            <div class="info-metrica">
+              <h3 id="totalPaquetes">0</h3>
+              <p>Total Paquetes</p>
+            </div>
+          </div>
+          <div class="tarjeta-metrica">
+            <div class="icono-metrica">💰</div>
+            <div class="info-metrica">
+              <h3 id="ingresosMes">$0</h3>
+              <p>Ingresos del Mes</p>
+            </div>
+          </div>
+          <div class="tarjeta-metrica">
+            <div class="icono-metrica">👥</div>
+            <div class="info-metrica">
+              <h3 id="empleadosActivos">0</h3>
+              <p>Empleados Activos</p>
+            </div>
+          </div>
+          <div class="tarjeta-metrica">
+            <div class="icono-metrica">🚛</div>
+            <div class="info-metrica">
+              <h3 id="vehiculosOperativos">0</h3>
+              <p>Vehículos Operativos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="graficos-admin">
+          <div class="grafico-ventas">
+            <h3>Ingresos por Mes</h3>
+            <canvas id="graficoVentas" width="600" height="300"></canvas>
+          </div>
+          <div class="actividad-reciente">
+            <h3>Actividad Reciente</h3>
+            <div id="listaActividad" class="lista-actividad"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="seccion-asignacion" class="seccion">
+        <div class="seccion-header d-flex justify-content-between align-items-center">
+          <h2>Asignación</h2>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="tabla-container">
+              <table id="tablaAsignacionEmpleados" class="tabla" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>ID</th>
+                    <th>Rol</th>
+                    <th>Paquetes asignados</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="cuerpoAsignacionEmpleados"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="seccion-paquetes" class="seccion">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="filtros" style="margin-right: auto;">
+            <input type="text" id="buscarPaquete" placeholder="Buscar por código o destinatario...">
+            <select id="filtroEstado">
+              <option value="">Todos los estados</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="en_transito">En Tránsito</option>
+              <option value="entregado">Entregado</option>
+              <option value="devuelto">Devuelto</option>
+            </select>
+          </div>
+          <div class="d-flex">
+            <button class="btn btn-exportar me-2" onclick="exportarAPDF('paquetes')">
+              <i class="fas fa-file-pdf me-1"></i> PDF
+            </button>
+            <button class="btn btn-exportar me-2" onclick="exportarAExcel('paquetes')">
+              <i class="fas fa-file-excel me-1"></i> Excel
+            </button>
+            <button id="btnEjecutarSelenium" class="btn btn-primario" onclick="ejecutarSelenium()">
+              <i class="fas fa-play me-1"></i> Extracción de datos
+            </button>
+            <button id="btnImportarDownloads" class="btn btn-exito ms-2" onclick="importarDesdeDownloadsYMostrar()" title="Importar TODOS los Excel de downloads/ a la BD y mostrarlos">
+              <i class="fas fa-database me-1"></i> Mostrar datos
+            </button>
+          </div>
+        </div>
+        <div class="tabla-container">
+          <table id="tablaPaquetes">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Remitente</th>
+                <th>Destinatario</th>
+                <th>Estado</th>
+                <th>Peso</th>
+                <th>Precio</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTablaPaquetes"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="seccion-rutas" class="seccion">
+        <div class="seccion-header">
+          <h2>Rutas</h2>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h3>Rutas</h3>
+              <button class="btn btn-primario" onclick="seedRutasDesdeUI()">Sincronizar rutas</button>
+            </div>
+            <div class="tabla-container">
+              <table id="tablaRutasConfig">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Zonas</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="cuerpoTablaRutasConfig"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnMenu = document.getElementById('btnMenuMovil');
+      const barraLateral = document.getElementById('barraLateral');
+      const contenidoPrincipal = document.querySelector('.contenido-principal');
+      const enlacesMenu = document.querySelectorAll('.menu a');
+      let menuAbierto = false;
+
+      function toggleMenu() {
+        menuAbierto = !menuAbierto;
+        barraLateral.classList.toggle('activa', menuAbierto);
+        contenidoPrincipal.classList.toggle('desplazado', menuAbierto);
+        const icono = btnMenu.querySelector('i');
+        if (menuAbierto) {
+          icono.classList.replace('fa-bars', 'fa-times');
+          document.body.style.overflow = 'hidden';
+        } else {
+          icono.classList.replace('fa-times', 'fa-bars');
+          document.body.style.overflow = '';
+        }
+      }
+
+      function cerrarMenu() {
+        if (window.innerWidth <= 992) {
+          menuAbierto = true;
+          toggleMenu();
+        }
+      }
+
+      btnMenu.addEventListener('click', toggleMenu);
+      enlacesMenu.forEach(enlace => enlace.addEventListener('click', cerrarMenu));
+      contenidoPrincipal.addEventListener('click', e => {
+        if (menuAbierto && !e.target.closest('.barra-lateral')) toggleMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) {
+          barraLateral.classList.remove('activa');
+          contenidoPrincipal.classList.remove('desplazado');
+          document.body.style.overflow = '';
+          menuAbierto = false;
+          const icono = btnMenu.querySelector('i');
+          icono.classList.replace('fa-times', 'fa-bars');
+        }
+      });
+    });
+
+    function cerrarSesion() {
+      if (confirm('¿Está seguro que desea cerrar sesión?')) {
+        if (typeof Storage !== 'undefined') {
+          localStorage.removeItem('sesion_activa');
+          sessionStorage.clear();
+        }
+        fetch('php/cerrar_sesion.php', {
+          method: 'GET',
+          credentials: 'same-origin',
+          headers: { 'Cache-Control': 'no-cache,no-store', 'Pragma': 'no-cache' }
+        })
+        .then(r => {
+          if (!r.ok) throw new Error('Error');
+          window.location.replace('login.html');
+        })
+        .catch(() => window.location.replace('login.html'));
+      }
+    }
+
+    function mostrarSeccion(seccion, elemento) {
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+      const sec = document.getElementById('seccion-' + seccion);
+      if (sec) sec.classList.add('activa');
+      document.querySelectorAll('.menu a').forEach(i => i.classList.remove('activo'));
+      if (elemento) {
+        elemento.classList.add('activo');
+      }
+      const titulos = {
+        dashboard: 'Panel de Control',
+        paquetes: 'Gestión de Paquetes',
+        rutas: 'Gestión de Rutas',
+        asignacion: 'Asignación',
+        vehiculos: 'Gestión de Vehículos',
+        reportes: 'Reportes'
+      };
+      const t = document.getElementById('tituloSeccion');
+      if (t) t.textContent = titulos[seccion] || 'Panel de Control';
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function actualizar() {
+      location.reload();
+    }
+
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = () => {
+      window.history.pushState(null, null, window.location.href);
+    };
+
+    // Registro de Service Worker desactivado (no existe sw.js/manifest en este proyecto)
+    // if ('serviceWorker' in navigator) {
+    //   window.addEventListener('load', () => {
+    //     navigator.serviceWorker.register('/sw.js')
+    //       .then(() => console.log('ServiceWorker ok'))
+    //       .catch(err => console.log('SW fail:', err));
+    //   });
+    // }
+
+    window.addEventListener('load', () => {
+      let pwa = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+      if (pwa) {
+        console.log('Modo PWA');
+        document.documentElement.classList.add('pwa-mode');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('php/verificar_sesion.php')
+        .then(r => r.json())
+        .then(d => {
+          if (!d.sesion_activa || d.usuario.tipo !== 'asistente') {
+            window.location.href = 'login.html';
+            return;
+          }
+          document.getElementById('nombreUsuario').textContent = d.usuario.nombre;
+          // Cargar paquetes desde BD al iniciar para que se muestren al entrar o al refrescar
+          cargarPaquetesDesdeBD();
+          
+        })
+        .catch(() => window.location.href = 'login.html');
+    });
+  </script>
+
+  <script>
+  // Utilidades de Rutas (botón "Sincronizar rutas")
+  async function seedRutasDesdeUI(){
+    try{
+      const btns = Array.from(document.querySelectorAll('button')).filter(b => /Sincronizar rutas/i.test(b.textContent||''));
+      btns.forEach(b=>{ b.disabled = true; b.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sincronizando...'; });
+      const form = new URLSearchParams(); form.append('accion','seed_rutas');
+      const resp = await fetch('php/admin.php', { method:'POST', body: form });
+      const raw = await resp.text();
+      let data; try { data = JSON.parse(raw); } catch (e) { data = { exito:false, mensaje: 'Respuesta no JSON', raw }; }
+      if (!data.exito) { alert('Error al sincronizar rutas: ' + (data.mensaje || 'Desconocido')); return; }
+      alert(`Rutas sincronizadas. Creadas: ${data.creadas||0}, Actualizadas: ${data.actualizadas||0}`);
+    } catch(e){
+      console.error('seedRutasDesdeUI', e);
+      alert('Error al sincronizar rutas: ' + e.message);
+    } finally {
+      const btns = Array.from(document.querySelectorAll('button')).filter(b => /Sincronizar rutas/i.test(b.textContent||''));
+      btns.forEach(b=>{ b.disabled = false; b.textContent = 'Sincronizar rutas'; });
+    }
+  }
+
+  // Cargar tabla de rutas (igual que en admin) con parse robusto
+  if (typeof window.cargarRutasConfig === 'undefined') {
+    window.cargarRutasConfig = async function() {
+      const tbody = document.getElementById('cuerpoTablaRutasConfig');
+      if (!tbody) return;
+      try {
+        tbody.innerHTML = '<tr><td colspan="4">Cargando...</td></tr>';
+        const resp = await fetch('php/admin.php?accion=rutas', { cache: 'no-store', credentials: 'same-origin' });
+        const raw = await resp.text();
+        let data; try { data = JSON.parse(raw); } catch(e){
+          tbody.innerHTML = `<tr><td colspan="4">Error: respuesta no JSON<br><small>${raw.slice(0,200)}</small></td></tr>`;
+          return;
+        }
+        if (!data || !data.exito || !Array.isArray(data.datos) || data.datos.length===0) {
+          tbody.innerHTML = '<tr><td colspan="4">No hay rutas</td></tr>';
+          return;
+        }
+        const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const fmtZonas = z => Array.isArray(z) ? z.join(', ') : String(z || '');
+        tbody.innerHTML = data.datos.map(r => `
+          <tr>
+            <td>${esc(r.id)}</td>
+            <td>${esc(r.nombre)}</td>
+            <td>${esc(fmtZonas(r.zonas))}</td>
+            <td>
+              <button class="btn btn-pequeno" disabled>Editar</button>
+            </td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        tbody.innerHTML = '<tr><td colspan="4">Error al cargar rutas</td></tr>';
+        console.error('cargarRutasConfig', e);
+      }
+    }
+  }
+  </script>
+
+  <!-- Bibliotecas para exportación como en paneladmin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="js/exportar.js"></script>
+
+  <script>
+    // Funciones traídas/adaptadas desde paneladmin.html
+    async function ejecutarSelenium() {
+      try {
+        const btn = document.getElementById('btnEjecutarSelenium');
+        if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Extrayendo datos...'; }
+        const resp = await fetch('php/run_selenium.php', { method: 'POST', cache: 'no-store' });
+        const raw = await resp.text();
+        let data;
+        try { data = JSON.parse(raw); } catch (e) {
+          alert('La respuesta de Selenium no es JSON.\n\nCuerpo:\n' + raw.slice(0,2000));
+          return;
+        }
+        if (!data.exito) { alert('Selenium reportó error: ' + (data.mensaje || 'Desconocido')); return; }
+        alert(data.mensaje || 'Descarga completada.');
+        if (typeof cargarPaquetesDesdeBD === 'function') {
+          await cargarPaquetesDesdeBD();
+          const enlace = document.querySelector('a[onclick*="paquetes"]');
+          if (enlace) mostrarSeccion('paquetes', enlace);
+        }
+      } catch (e) {
+        console.error('Error en ejecutarSelenium():', e);
+        alert('Error ejecutando Selenium: ' + e.message);
+      } finally {
+        const btn = document.getElementById('btnEjecutarSelenium');
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-play me-1"></i> Extracción de datos'; }
+      }
+    }
+
+    async function importarDesdeDownloadsYMostrar() {
+      try {
+        const btn = document.getElementById('btnImportarDownloads');
+        if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mostrando datos...'; }
+        const resp = await fetch('php/import_paquetes.php', { method: 'POST', cache: 'no-store' });
+        const raw = await resp.text();
+        let data;
+        try { data = JSON.parse(raw); } catch (e) {
+          alert('La respuesta de importación no es JSON.\n\nCuerpo (primeros 2000 chars):\n' + raw.slice(0,2000));
+          return;
+        }
+        if (!data.exito) { alert('Error al importar: ' + (data.mensaje || 'Desconocido')); return; }
+        const detalle = Array.isArray(data.detalle)
+          ? ('\n' + data.detalle.map(d => `- ${d.archivo || ''}: ${d.insertados ?? d.error}`).join('\n'))
+          : '';
+        alert(`Importación completada. Insertados: ${data.insertados || 0}${detalle}`);
+        await cargarPaquetesDesdeBD();
+        const enlace = document.querySelector('a[onclick*="paquetes"]');
+        if (enlace) mostrarSeccion('paquetes', enlace);
+      } catch (e) {
+        console.error('Error en importarDesdeDownloadsYMostrar:', e);
+        alert('Error en importación: ' + e.message);
+      } finally {
+        const btn = document.getElementById('btnImportarDownloads');
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-database me-1"></i> Mostrar datos'; }
+      }
+    }
+
+    async function cargarPaquetesDesdeBD() {
+      try {
+        const resp = await fetch('php/paquetes.php?limit=2000', { cache: 'no-store' });
+        const raw = await resp.text();
+        let data;
+        try { data = JSON.parse(raw); } catch (e) {
+          alert('Error cargando paquetes desde BD.\nLa respuesta no es JSON.\n\nCuerpo (primeros 2000 chars):\n' + raw.slice(0,2000));
+          return;
+        }
+        if (!data.exito) throw new Error(data.mensaje || 'Error desconocido');
+        const headers = data.headers && data.headers.length ? data.headers : inferHeaders(data.datos);
+        renderPaquetesDesdeBD(headers, data.datos);
+        const totalLbl = document.getElementById('totalPaquetes');
+        if (totalLbl) totalLbl.textContent = String(data.total || data.datos.length || 0);
+      } catch (e) {
+        console.error('Error cargando desde BD:', e);
+        alert('Error cargando paquetes desde BD: ' + e.message);
+      }
+    }
+
+    function inferHeaders(rows) {
+      if (!Array.isArray(rows) || !rows.length) return [];
+      return Object.keys(rows[0]);
+    }
+
+    function renderPaquetesDesdeBD(headers, rows) {
+      const tabla = document.getElementById('tablaPaquetes');
+      if (!tabla) return alert('No se encontró la tabla de Paquetes (id="tablaPaquetes").');
+      const thead = tabla.querySelector('thead');
+      const tbody = tabla.querySelector('tbody');
+      if (!thead || !tbody) return alert('La tabla de Paquetes no tiene thead/tbody.');
+      const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      thead.innerHTML = '<tr>' + headers.map(h => `<th>${esc(h)}</th>`).join('') + '</tr>';
+      let html = '';
+      for (const r of rows) { html += '<tr>' + headers.map(h => `<td>${esc(r[h])}</td>`).join('') + '</tr>'; }
+      tbody.innerHTML = html;
+    }
+
+    
+  </script>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

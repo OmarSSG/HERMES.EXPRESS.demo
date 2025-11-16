@@ -1,0 +1,467 @@
+[2025-10-06 23:21:33] CMD: C:^\Users^\TU_USUARIO^\AppData^\Local^\Programs^\Python^\Python312^\python.exe "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-06 23:21:33] CODE: 1
+[2025-10-06 23:21:33] OUT:
+El sistema no puede encontrar la ruta especificada.
+[2025-10-06 23:27:13] CMD: C:^\Users^\JULIO DME^\AppData^\Local^\Programs^\Python^\Python313^\python.exe "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-06 23:27:13] CODE: 1
+[2025-10-06 23:27:13] OUT:
+"C:\Users\JULIO" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+[2025-10-06 23:29:18] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-06 23:40:20] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-09 05:13:47] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-09 05:45:24] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-09 05:46:11] CODE: 0
+[2025-10-09 05:46:11] OUT:
+=== EXTRACCION DE DATOS SAVAR EXPRESS ===
+
+Configurando consulta para el rango de fechas: 2025-09-15 al 2025-09-15
+
+PASO 1: INICIANDO SESION...
+Iniciando sesión en SAVAR con usuario: CHI.HER
+Navegando a la página de inicio de sesión...
+Página cargada correctamente
+Screenshot guardado: screenshot_login_page.png
+Buscando campos de login...
+Elemento encontrado: css selector=input[type='text']
+Elemento encontrado: css selector=input[type='password']
+Campos de login encontrados, completando credenciales...
+Usuario ingresado
+Contraseña ingresada
+Elemento encontrado: css selector=button[type='submit']
+Haciendo clic en el botón de envío...
+Esperando a que se complete el inicio de sesión...
+URL después del login: https://app.savarexpress.com.pe/govari/#
+No se encontraron mensajes de error visibles: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: unable to send message to renderer
+  (Session info: chrome=140.0.7339.210); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+	GetHandleVerifier [0x0x10bc333+65459]
+	GetHandleVerifier [0x0x10bc374+65524]
+	(No symbol) [0x0xedd973]
+	(No symbol) [0x0xecd399]
+	(No symbol) [0x0xecd316]
+	(No symbol) [0x0xecbbbf]
+	(No symbol) [0x0xecc8a7]
+	(No symbol) [0x0xee26d7]
+	(No symbol) [0x0xee2e7b]
+	(No symbol) [0x0xee6734]
+	(No symbol) [0x0xee67c8]
+	(No symbol) [0x0xf26f74]
+	(No symbol) [0x0xf27a8b]
+	(No symbol) [0x0xf6dedc]
+	(No symbol) [0x0xf49e44]
+	(No symbol) [0x0xf6b606]
+	(No symbol) [0x0xf49bf6]
+	(No symbol) [0x0xf1b38e]
+	(No symbol) [0x0xf1c274]
+	GetHandleVerifier [0x0x133eda3+2697763]
+	GetHandleVerifier [0x0x1339ec7+2677575]
+	GetHandleVerifier [0x0x10e4194+228884]
+	GetHandleVerifier [0x0x10d49f8+165496]
+	GetHandleVerifier [0x0x10db18d+192013]
+	GetHandleVerifier [0x0x10c47d8+99416]
+	GetHandleVerifier [0x0x10c4972+99826]
+	GetHandleVerifier [0x0x10aebea+10346]
+	BaseThreadInitThunk [0x0x76185d49+25]
+	RtlInitializeExceptionChain [0x0x7786d6db+107]
+	RtlGetAppContainerNamedObjectPath [0x0x7786d661+561]
+
+Error en el proceso de inicio de sesión: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+	GetHandleVerifier [0x0x10bc333+65459]
+	GetHandleVerifier [0x0x10bc374+65524]
+	(No symbol) [0x0xedd7c0]
+	(No symbol) [0x0xf1a663]
+	(No symbol) [0x0xf49cb6]
+	(No symbol) [0x0xf4555e]
+	(No symbol) [0x0xf44ad3]
+	(No symbol) [0x0xeae73d]
+	(No symbol) [0x0xeaecbe]
+	(No symbol) [0x0xeaf15d]
+	GetHandleVerifier [0x0x133eda3+2697763]
+	GetHandleVerifier [0x0x1339ec7+2677575]
+	GetHandleVerifier [0x0x10e4194+228884]
+	GetHandleVerifier [0x0x10d49f8+165496]
+	GetHandleVerifier [0x0x10db18d+192013]
+	(No symbol) [0x0xeae3f2]
+	(No symbol) [0x0xeadb72]
+	GetHandleVerifier [0x0x149340c+4092044]
+	BaseThreadInitThunk [0x0x76185d49+25]
+	RtlInitializeExceptionChain [0x0x7786d6db+107]
+	RtlGetAppContainerNamedObjectPath [0x0x7786d661+561]
+
+No se pudo guardar el screenshot del error
+Error: No se pudo iniciar sesion
+
+==================================================
+RESULTADO DE DESCARGA DE EXCEL:
+==================================================
+Estado: error
+Mensaje: No se pudo iniciar sesión
+
+==================================================
+PROCESO FINALIZADO
+==================================================
+Revisa los siguientes archivos:
+- datos_savar.json (datos extraídos)
+- downloads/ (archivos Excel descargados)
+- Screenshots (imágenes del proceso)
+
+Esperando 10 segundos antes de cerrar...
+[2025-10-09 05:53:33] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-09 05:54:56] CODE: 0
+[2025-10-09 05:54:56] OUT:
+=== EXTRACCION DE DATOS SAVAR EXPRESS ===
+
+Configurando consulta para el rango de fechas: 2025-09-15 al 2025-09-15
+
+PASO 1: INICIANDO SESION...
+Iniciando sesión en SAVAR con usuario: CHI.HER
+Navegando a la página de inicio de sesión...
+Página cargada correctamente
+Screenshot guardado: screenshot_login_page.png
+Buscando campos de login...
+Elemento encontrado: css selector=input[type='text']
+Elemento encontrado: css selector=input[type='password']
+Campos de login encontrados, completando credenciales...
+Usuario ingresado
+Contraseña ingresada
+Elemento encontrado: css selector=button[type='submit']
+Haciendo clic en el botón de envío...
+Esperando a que se complete el inicio de sesión...
+URL después del login: https://app.savarexpress.com.pe/govari/#
+Screenshot guardado: screenshot_after_login.png
+Configurando rango de fechas: 2025-09-15 a 2025-09-15
+Error al configurar fechas con selector input[class*='date']: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=140.0.7339.210)
+Stacktrace:
+	GetHandleVerifier [0x0x10bc333+65459]
+	GetHandleVerifier [0x0x10bc374+65524]
+	(No symbol) [0x0xedd973]
+	(No symbol) [0x0xebc19d]
+	(No symbol) [0x0xf5059e]
+	(No symbol) [0x0xf6aef9]
+	(No symbol) [0x0xf49bf6]
+	(No symbol) [0x0xf1b38e]
+	(No symbol) [0x0xf1c274]
+	GetHandleVerifier [0x0x133eda3+2697763]
+	GetHandleVerifier [0x0x1339ec7+2677575]
+	GetHandleVerifier [0x0x10e4194+228884]
+	GetHandleVerifier [0x0x10d49f8+165496]
+	GetHandleVerifier [0x0x10db18d+192013]
+	GetHandleVerifier [0x0x10c47d8+99416]
+	GetHandleVerifier [0x0x10c4972+99826]
+	GetHandleVerifier [0x0x10aebea+10346]
+	BaseThreadInitThunk [0x0x76185d49+25]
+	RtlInitializeExceptionChain [0x0x7786d6db+107]
+	RtlGetAppContainerNamedObjectPath [0x0x7786d661+561]
+
+Error al configurar fechas con selector input[id*='fecha']: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=140.0.7339.210)
+Stacktrace:
+	GetHandleVerifier [0x0x10bc333+65459]
+	GetHandleVerifier [0x0x10bc374+65524]
+	(No symbol) [0x0xedd973]
+	(No symbol) [0x0xebc19d]
+	(No symbol) [0x0xf5059e]
+	(No symbol) [0x0xf6aef9]
+	(No symbol) [0x0xf49bf6]
+	(No symbol) [0x0xf1b38e]
+	(No symbol) [0x0xf1c274]
+	GetHandleVerifier [0x0x133eda3+2697763]
+	GetHandleVerifier [0x0x1339ec7+2677575]
+	GetHandleVerifier [0x0x10e4194+228884]
+	GetHandleVerifier [0x0x10d49f8+165496]
+	GetHandleVerifier [0x0x10db18d+192013]
+	GetHandleVerifier [0x0x10c47d8+99416]
+	GetHandleVerifier [0x0x10c4972+99826]
+	GetHandleVerifier [0x0x10aebea+10346]
+	BaseThreadInitThunk [0x0x76185d49+25]
+	RtlInitializeExceptionChain [0x0x7786d6db+107]
+	RtlGetAppContainerNamedObjectPath [0x0x7786d661+561]
+
+Error al configurar fechas con selector input[name*='fecha']: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=140.0.7339.210)
+Stacktrace:
+	GetHandleVerifier [0x0x10bc333+65459]
+	GetHandleVerifier [0x0x10bc374+65524]
+	(No symbol) [0x0xedd973]
+	(No symbol) [0x0xebc19d]
+	(No symbol) [0x0xf5059e]
+	(No symbol) [0x0xf6aef9]
+	(No symbol) [0x0xf49bf6]
+	(No symbol) [0x0xf1b38e]
+	(No symbol) [0x0xf1c274]
+	GetHandleVerifier [0x0x133eda3+2697763]
+	GetHandleVerifier [0x0x1339ec7+2677575]
+	GetHandleVerifier [0x0x10e4194+228884]
+	GetHandleVerifier [0x0x10d49f8+165496]
+	GetHandleVerifier [0x0x10db18d+192013]
+	GetHandleVerifier [0x0x10c47d8+99416]
+	GetHandleVerifier [0x0x10c4972+99826]
+	GetHandleVerifier [0x0x10aebea+10346]
+	BaseThreadInitThunk [0x0x76185d49+25]
+	RtlInitializeExceptionChain [0x0x7786d6db+107]
+	RtlGetAppContainerNamedObjectPath [0x0x7786d661+561]
+
+Advertencia: No se encontraron campos de fecha válidos
+Inicio de sesión exitoso
+Inicio de sesion exitoso
+
+PASO 2: NAVEGANDO A CONTROL DE ALMACENES...
+No se encontró el buscador del menú
+Error: No se pudo abrir 'Control de Almacenes'
+
+==================================================
+RESULTADO DE DESCARGA DE EXCEL:
+==================================================
+Estado: error
+Mensaje: No se pudo abrir Control de Almacenes
+
+==================================================
+PROCESO FINALIZADO
+==================================================
+Revisa los siguientes archivos:
+- datos_savar.json (datos extraídos)
+- downloads/ (archivos Excel descargados)
+- Screenshots (imágenes del proceso)
+
+Esperando 10 segundos antes de cerrar...
+[2025-10-09 05:59:41] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-09 06:10:15] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-12 17:05:27] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-12 17:05:27] CODE: 1
+[2025-10-12 17:05:27] OUT:
+El sistema no puede encontrar la ruta especificada.
+[2025-10-12 17:05:30] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-12 17:05:30] CODE: 1
+[2025-10-12 17:05:30] OUT:
+El sistema no puede encontrar la ruta especificada.
+[2025-10-12 17:08:24] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-12 17:08:24] CODE: 1
+[2025-10-12 17:08:24] OUT:
+El sistema no puede encontrar la ruta especificada.
+[2025-10-12 17:36:45] CMD: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-12 17:36:45] CODE: 1
+[2025-10-12 17:36:45] OUT:
+El sistema no puede encontrar la ruta especificada.
+[2025-10-12 17:43:54] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-12 17:43:54] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-12 17:43:54] SKIP inexistente: C:\Python313\python.exe
+[2025-10-12 17:43:54] SKIP inexistente: C:\Python312\python.exe
+[2025-10-12 17:43:54] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-27 16:48:32] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-27 16:48:32] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-27 16:48:32] SKIP inexistente: C:\Python313\python.exe
+[2025-10-27 16:48:32] SKIP inexistente: C:\Python312\python.exe
+[2025-10-27 16:48:32] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-10-27 16:49:51] CODE: 0
+OUT:
+=== EXTRACCION DE DATOS SAVAR EXPRESS ===
+
+Configurando consulta para el rango de fechas: 2025-09-15 al 2025-09-15
+
+PASO 1: INICIANDO SESION...
+Iniciando sesión en SAVAR con usuario: CHI.HER
+Navegando a la página de inicio de sesión...
+Página cargada correctamente
+Screenshot guardado: screenshot_login_page.png
+Buscando campos de login...
+Elemento encontrado: css selector=input[type='text']
+Elemento encontrado: css selector=input[type='password']
+Campos de login encontrados, completando credenciales...
+Usuario ingresado
+Contraseña ingresada
+Elemento encontrado: css selector=button[type='submit']
+Haciendo clic en el botón de envío...
+Esperando a que se complete el inicio de sesión...
+Error en el proceso de inicio de sesión: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=141.0.7390.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+	GetHandleVerifier [0x0xd8fe43+66515]
+	GetHandleVerifier [0x0xd8fe84+66580]
+	(No symbol) [0x0xb7dc48]
+	(No symbol) [0x0xb6ce80]
+	(No symbol) [0x0xb8b81b]
+	(No symbol) [0x0xbf1c25]
+	(No symbol) [0x0xc0c4d9]
+	(No symbol) [0x0xbeafc6]
+	(No symbol) [0x0xbbc2ca]
+	(No symbol) [0x0xbbd154]
+	GetHandleVerifier [0x0xfe7353+2521315]
+	GetHandleVerifier [0x0xfe22d3+2500707]
+	GetHandleVerifier [0x0xdb7c94+229924]
+	GetHandleVerifier [0x0xda81f8+165768]
+	GetHandleVerifier [0x0xdaecad+193085]
+	GetHandleVerifier [0x0xd98158+100072]
+	GetHandleVerifier [0x0xd982f0+100480]
+	GetHandleVerifier [0x0xd825aa+11066]
+	BaseThreadInitThunk [0x0x76a80099+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77407b6e+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77407b3e+238]
+
+No se pudo guardar el screenshot del error
+Error: No se pudo iniciar sesion
+
+==================================================
+RESULTADO DE DESCARGA DE EXCEL:
+==================================================
+Estado: error
+Mensaje: No se pudo iniciar sesión
+
+==================================================
+PROCESO FINALIZADO
+==================================================
+Revisa los siguientes archivos:
+- datos_savar.json (datos extraídos)
+- downloads/ (archivos Excel descargados)
+- Screenshots (imágenes del proceso)
+
+Esperando 10 segundos antes de cerrar...
+[2025-10-27 16:50:56] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-10-27 16:50:56] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-10-27 16:50:56] SKIP inexistente: C:\Python313\python.exe
+[2025-10-27 16:50:56] SKIP inexistente: C:\Python312\python.exe
+[2025-10-27 16:50:56] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-01 20:09:47] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-01 20:10:19] CODE: 0
+OUT:
+=== EXTRACCION DE DATOS SAVAR EXPRESS ===
+
+Configurando consulta para el rango de fechas: 2025-09-15 al 2025-09-15
+
+PASO 1: INICIANDO SESION...
+Iniciando sesión en SAVAR con usuario: CHI.HER
+Navegando a la página de inicio de sesión...
+Página cargada correctamente
+Screenshot guardado: screenshot_login_page.png
+Buscando campos de login...
+Elemento encontrado: css selector=input[type='text']
+Elemento encontrado: css selector=input[type='password']
+Campos de login encontrados, completando credenciales...
+Usuario ingresado
+Contraseña ingresada
+Elemento encontrado: css selector=button[type='submit']
+Haciendo clic en el botón de envío...
+Esperando a que se complete el inicio de sesión...
+Error en el proceso de inicio de sesión: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=141.0.7390.123)
+Stacktrace:
+	GetHandleVerifier [0x0x4ffe43+66515]
+	GetHandleVerifier [0x0x4ffe84+66580]
+	(No symbol) [0x0x2edc48]
+	(No symbol) [0x0x2cc18d]
+	(No symbol) [0x0x361a4e]
+	(No symbol) [0x0x37c4d9]
+	(No symbol) [0x0x35afc6]
+	(No symbol) [0x0x32c2ca]
+	(No symbol) [0x0x32d154]
+	GetHandleVerifier [0x0x757353+2521315]
+	GetHandleVerifier [0x0x7522d3+2500707]
+	GetHandleVerifier [0x0x527c94+229924]
+	GetHandleVerifier [0x0x5181f8+165768]
+	GetHandleVerifier [0x0x51ecad+193085]
+	GetHandleVerifier [0x0x508158+100072]
+	GetHandleVerifier [0x0x5082f0+100480]
+	GetHandleVerifier [0x0x4f25aa+11066]
+	BaseThreadInitThunk [0x0x75c65d49+25]
+	RtlInitializeExceptionChain [0x0x7768d6db+107]
+	RtlGetAppContainerNamedObjectPath [0x0x7768d661+561]
+
+No se pudo guardar el screenshot del error
+Error: No se pudo iniciar sesion
+
+==================================================
+RESULTADO DE DESCARGA DE EXCEL:
+==================================================
+Estado: error
+Mensaje: No se pudo iniciar sesión
+
+==================================================
+PROCESO FINALIZADO
+==================================================
+Revisa los siguientes archivos:
+- datos_savar.json (datos extraídos)
+- downloads/ (archivos Excel descargados)
+- Screenshots (imágenes del proceso)
+
+Esperando 10 segundos antes de cerrar...
+[2025-11-12 15:38:22] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-12 15:50:00] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-12 15:50:22] CODE: 0
+OUT:
+=== EXTRACCION DE DATOS SAVAR EXPRESS ===
+
+Configurando consulta para el rango de fechas: 2025-09-15 al 2025-09-15
+
+PASO 1: INICIANDO SESION...
+Iniciando sesión en SAVAR con usuario: CHI.HER
+Navegando a la página de inicio de sesión...
+Página cargada correctamente
+Screenshot guardado: screenshot_login_page.png
+Buscando campos de login...
+Elemento encontrado: css selector=input[type='text']
+Elemento encontrado: css selector=input[type='password']
+Campos de login encontrados, completando credenciales...
+Usuario ingresado
+Contraseña ingresada
+Elemento encontrado: css selector=button[type='submit']
+Haciendo clic en el botón de envío...
+Esperando a que se complete el inicio de sesión...
+Error en el proceso de inicio de sesión: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=142.0.7444.61); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xce4093
+	0xce40d4
+	0xaee71d
+	0xadd910
+	0xafc714
+	0xb63475
+	0xb7e749
+	0xb5c706
+	0xb2da30
+	0xb2ed54
+	0xf55744
+	0xf5091a
+	0xd0c322
+	0xcfc458
+	0xd031dd
+	0xcec408
+	0xcec5cc
+	0xcd675a
+	0x75ad5d49
+	0x771fd6db
+	0x771fd661
+
+No se pudo guardar el screenshot del error
+Error: No se pudo iniciar sesion
+
+==================================================
+RESULTADO DE DESCARGA DE EXCEL:
+==================================================
+Estado: error
+Mensaje: No se pudo iniciar sesión
+
+==================================================
+PROCESO FINALIZADO
+==================================================
+Revisa los siguientes archivos:
+- datos_savar.json (datos extraídos)
+- downloads/ (archivos Excel descargados)
+- Screenshots (imágenes del proceso)
+
+Esperando 10 segundos antes de cerrar...
+[2025-11-12 16:07:08] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-12 16:15:39] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-12 16:21:04] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-12 16:38:44] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-12 16:52:10] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1
+[2025-11-12 17:04:57] PROBANDO: "C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe" "C:\xampp\htdocs\HERMES.EXPRESS\selenium_utils.py" 2>&1

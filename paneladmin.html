@@ -1,0 +1,3120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#007bff">
+    <meta name="description" content="Panel de Administración HERMES EXPRESS LOGISTIC">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Preload de fuentes críticas -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Precargar CSS crítico -->
+    <link rel="stylesheet" href="css/paneladmin.css">
+    <link rel="stylesheet" href="css/paneladmin-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/rutas.constants.js"></script>
+    <script src="js/admin.shared.js?v=asig_fix_2" defer></script>
+    <title>HERMES - Panel Administrador</title>
+</head>
+<body>
+    <div class="contenedor">
+        <!-- Botón de menú móvil -->
+        <button class="menu-movil" id="btnMenuMovil" aria-label="Menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav class="barra-lateral" id="barraLateral">
+            <div class="logo">
+                <h2>HERMES EXPRESS LOGISTIC</h2>
+            </div>
+            
+            <ul class="menu">
+                <li><a href="javascript:void(0)" class="activo" onclick="mostrarSeccion('dashboard', this)">
+                    <span class="icono">📊</span>Dashboard
+                </a></li>
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('paquetes', this)">
+                    <span class="icono">📦</span>Paquetes
+                </a></li>
+                
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('archivos-excel', this)">
+                    <i class="fas fa-file-excel menu-icon"></i>
+                    <span class="menu-text">Archivos Excel</span>
+                </a></li>
+                
+                
+                
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('finanzas', this)">
+                    <span class="icono">💹</span>Finanzas
+                </a></li>
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('tarifas', this)">
+                    <span class="icono">🏷️</span>Tarifas
+                </a></li>
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('asignacion', this); if (window.cargarVistaAsignacion) try{ window.cargarVistaAsignacion(); }catch(e){}">
+                    <span class="icono">🧩</span>Asignación
+                </a></li>
+                <li><a href="javascript:void(0)" onclick="mostrarSeccion('configuracion', this)">
+                    <span class="icono">⚙️</span>Configuración
+                </a></li>
+            </ul>
+            
+            <div class="usuario-info">
+                <div class="avatar">👤</div>
+                <div class="info">
+                    <p id="nombreUsuario">Administrador</p>
+                    <small>Admin</small>
+                </div>
+                <button onclick="cerrarSesion()" class="btn-salir">🚪</button>
+            </div>
+        </nav>
+
+        <main class="contenido-principal">
+            <header class="cabecera">
+                <h1 id="tituloSeccion">Panel de Administración</h1>
+                <div class="acciones">
+                    <!-- Botón de actualización eliminado -->
+                </div>
+            </header>
+
+            <section id="seccion-dashboard" class="seccion activa">
+                <div class="metricas-principales">
+                    <div class="tarjeta-metrica">
+                        <div class="icono-metrica">📦</div>
+                        <div class="info-metrica">
+                            <h3 id="totalPaquetes">0</h3>
+                            <p>Total Paquetes</p>
+                        </div>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <div class="icono-metrica">💰</div>
+                        <div class="info-metrica">
+                            <h3 id="ingresosMes">$0</h3>
+                            <p>Ingresos del Mes</p>
+                        </div>
+                    </div>
+                    <div class="tarjeta-metrica">
+                        <div class="icono-metrica">🚛</div>
+                        <div class="info-metrica">
+                            <h3 id="vehiculosOperativos">0</h3>
+                            <p>Vehículos Operativos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graficos-admin">
+                    <div class="grafico-ventas">
+                        <h3>Estado de Paquetes</h3>
+                        <canvas id="graficoEstados" width="600" height="300"></canvas>
+                    </div>
+                    <div class="actividad-reciente">
+                        <h3>Actividad Reciente</h3>
+                        <div id="listaActividad" class="lista-actividad">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Sección Asignación -->
+            <section id="seccion-asignacion" class="seccion">
+                <div class="seccion-header d-flex justify-content-between align-items-center">
+                    <h2>Asignación</h2>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tabla-container">
+                            <table id="tablaAsignacionEmpleados" class="tabla" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>ID</th>
+                                        <th>Rol</th>
+                                        <th>Paquetes asignados</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoAsignacionEmpleados"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal Asignación (custom) -->
+            <div id="modalAsignacion" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:10000; align-items:center; justify-content:center;">
+              <div style="background:#fff; width:95%; max-width:700px; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+                <div style="padding:14px 18px; border-bottom:1px solid #e9ecef; display:flex; align-items:center; justify-content:space-between;">
+                  <h3 id="modalAsignacionTitulo" style="margin:0; font-size:18px;">Asignar rutas</h3>
+                  <button id="modalAsignacionCerrar" class="btn btn-secundario" style="padding:6px 10px;">✕</button>
+                </div>
+                <div style="padding:16px; max-height:60vh; overflow:auto;">
+                  <div id="modalAsignacionContenido">
+                    <p class="text-muted">Cargando rutas…</p>
+                  </div>
+                </div>
+                <div style="padding:12px 16px; border-top:1px solid #e9ecef; display:flex; gap:8px; justify-content:flex-end;">
+                  <button id="modalAsignacionCancelar" class="btn btn-secundario">Cancelar</button>
+                  <button id="modalAsignacionAceptar" class="btn btn-primario">Aceptar</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sección Configuración (Usuarios y Rutas) -->
+            <section id="seccion-configuracion" class="seccion">
+                <div class="seccion-header d-flex justify-content-between align-items-center">
+                    <h2>Configuración</h2>
+                    <div class="acciones">
+                        <button id="btnNuevoUsuario" class="btn btn-primario">Nuevo Usuario</button>
+                        <button id="btnNuevaRuta" class="btn btn-secundario">Nueva Ruta</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Usuarios</h3>
+                        <div id="alertContainer"></div>
+                        <div class="tabla-container">
+                            <table id="usuariosTable" class="tabla display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Tipo</th>
+                                        <th>Activo</th>
+                                        <th>Fecha creación</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:16px;">
+                    <div class="card-body">
+                        <h3>Rutas</h3>
+                        <div class="tabla-container">
+                            <table id="tablaRutasConfig" class="tabla" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Zonas</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTablaRutasConfig"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal Usuario -->
+            <div class="modal fade boots-fixed" id="usuarioModal" tabindex="-1" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="usuarioModalLabel">Nuevo Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="usuarioForm" data-action="crear">
+                      <input type="hidden" id="usuario_id" value="">
+                      <div class="form-grid">
+                      <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="clave" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="clave">
+                      </div>
+                      <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo</label>
+                        <select id="tipo" class="form-select">
+                          <option value="empleado">Empleado</option>
+                          <option value="asistente">Asistente</option>
+                          <option value="admin">Administrador</option>
+                        </select>
+                      </div>
+                      <div class="mb-3 d-none" id="grupoZona">
+                        <label for="zona" class="form-label">Zona</label>
+                        <select id="zona" class="form-select">
+                          <option value="">Seleccione zona</option>
+                          <option>URBANO</option>
+                          <option>PUEBLOS</option>
+                          <option>PLAYAS</option>
+                          <option>COOPERATIVAS</option>
+                          <option>EXCOOPERATIVAS</option>
+                          <option>FERREÑAFE</option>
+                        </select>
+                      </div>
+                      </div>
+                      <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="activo" checked>
+                        <label class="form-check-label" for="activo">Activo</label>
+                      </div>
+                      <button type="submit" class="btn btn-primario btn-guardar">Guardar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+            // Acciones de Rutas: nuevo y editar
+            (function(){
+              function abrirModalRuta(payload){
+                const modal = document.getElementById('rutaModal');
+                modal.querySelector('#ruta_id').value = payload?.id || '';
+                modal.querySelector('#ruta_nombre').value = payload?.nombre || '';
+                modal.querySelector('#ruta_zonas').value = payload?.zonas || '';
+                const titulo = modal.querySelector('#rutaModalLabel');
+                titulo.textContent = payload?.id ? 'Editar Ruta' : 'Nueva Ruta';
+                const bs = (typeof bootstrap!=='undefined') ? (bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal)) : null;
+                if (bs) bs.show(); else modal.style.display='block';
+              }
+              async function guardarRuta(){
+                const modal = document.getElementById('rutaModal');
+                const id = modal.querySelector('#ruta_id').value.trim();
+                const nombre = modal.querySelector('#ruta_nombre').value.trim();
+                const zonasRaw = modal.querySelector('#ruta_zonas').value;
+                if (!nombre) { alert('Nombre requerido'); return; }
+                // Normalizar zonas: split por coma, trim, quitar vacíos y duplicados, capitalizar palabras
+                const items = (zonasRaw||'').split(',').map(s=>s.trim()).filter(Boolean);
+                const uniq = Array.from(new Set(items.map(s=>s.toLowerCase())));
+                const zonascap = uniq.map(s=> s.split(' ').map(w=> w? (w[0].toUpperCase()+w.slice(1)) : '').join(' ')).join(', ');
+                const fd = new FormData();
+                if (id) { fd.append('accion','actualizar_ruta'); fd.append('id', id); }
+                else { fd.append('accion','crear_ruta'); }
+                fd.append('nombre', nombre);
+                fd.append('zonas', zonascap);
+                const r = await fetch('php/admin.php', { method:'POST', body: fd });
+                const d = await r.json();
+                if (!d.exito) { alert(d.mensaje||'No se pudo guardar la ruta'); return; }
+                try{ const bs = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal); bs.hide(); }catch(_){ modal.style.display='none'; }
+                if (typeof safeCargarRutasConfig==='function') safeCargarRutasConfig();
+              }
+              document.getElementById('btnNuevaRuta')?.addEventListener('click', function(){ abrirModalRuta(null); });
+              document.getElementById('btnGuardarRuta')?.addEventListener('click', guardarRuta);
+              // Delegar clic en Editar dentro de la tabla
+              document.getElementById('cuerpoTablaRutasConfig')?.addEventListener('click', function(e){
+                const btn = e.target.closest('[data-edit-route]');
+                if (!btn) return;
+                const tr = btn.closest('tr');
+                const id = (tr.children[0]?.textContent||'').trim();
+                const nombre = (tr.children[1]?.textContent||'').trim();
+                const zonasTxt = (tr.children[2]?.textContent||'').trim();
+                abrirModalRuta({id, nombre, zonas: zonasTxt});
+              });
+              // Inyectar botón Editar por fila cuando se cargan rutas (monkey patch simple)
+              const orig = window.safeCargarRutasConfig;
+              window.safeCargarRutasConfig = async function(){
+                if (typeof orig === 'function') await orig();
+                const tbody = document.getElementById('cuerpoTablaRutasConfig');
+                if (!tbody) return;
+                Array.from(tbody.querySelectorAll('tr')).forEach(tr=>{
+                  const id = (tr.children[0]?.textContent||'').trim();
+                  const nombre = (tr.children[1]?.textContent||'').trim();
+                  const zonasTxt = (tr.children[2]?.textContent||'').trim();
+                  const tdAcc = tr.children[3];
+                  if (!tdAcc) return;
+                  if (!tdAcc.querySelector('[data-edit]')){
+                    const btn = document.createElement('button'); btn.textContent='Editar'; btn.className='btn btn-pequeno btn-primario'; btn.setAttribute('data-edit','1');
+                    btn.addEventListener('click', ()=> abrirModalRuta({id, nombre, zonas: zonasTxt}));
+                    tdAcc.insertBefore(btn, tdAcc.firstChild);
+                  }
+                });
+              };
+              // Refrescar inmediatamente para asegurar que aparezcan los botones Editar
+              try { window.safeCargarRutasConfig(); } catch(_){ }
+            })();
+            </script>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function(){
+              try{
+                if (document.getElementById('cuerpoAsignacionEmpleados') && typeof window.cargarVistaAsignacion==='function') {
+                  window.cargarVistaAsignacion();
+                }
+                // Fallback: click programático al menú Asignación para activar rendering
+                const linkAsig = Array.from(document.querySelectorAll('.menu a')).find(a=>/Asignación/i.test(a.textContent||''));
+                if (linkAsig) {
+                  linkAsig.addEventListener('click', function(){
+                    setTimeout(function(){ if (typeof window.cargarVistaAsignacion==='function') window.cargarVistaAsignacion(); }, 50);
+                  });
+                }
+              }catch(e){}
+            });
+            </script>
+
+            <!-- Modal Ruta (Crear/Editar) -->
+            <div class="modal fade boots-fixed" id="rutaModal" tabindex="-1" aria-labelledby="rutaModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="rutaModalLabel">Editar Ruta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="hidden" id="ruta_id">
+                    <div class="form-grid">
+                      <div class="mb-3">
+                        <label for="ruta_nombre" class="form-label">Nombre de la ruta</label>
+                        <input type="text" id="ruta_nombre" class="form-control" placeholder="Ej: COOPERATIVAS" required>
+                        <small class="text-muted">Usa un nombre corto y descriptivo (se recomienda mayúsculas).</small>
+                      </div>
+                      <div class="mb-3 full-row">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <label for="ruta_zonas" class="form-label">Zonas (separadas por coma)</label>
+                          <small id="rutaZonasCount" class="text-muted">0 zonas</small>
+                        </div>
+                        <textarea id="ruta_zonas" class="form-control" rows="5" placeholder="Ej: Pomalca, Tumán, Pátapo, Pucalá"></textarea>
+                        <div id="rutaZonasPreview" class="chips-preview" aria-live="polite"></div>
+                        <small class="text-muted">Duplicados y capitalización se normalizan al guardar. Vista previa abajo.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnGuardarRuta" class="btn btn-primary">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+            // Mejora UX: vista previa tipo "chips" de zonas y contador
+            (function(){
+              const txt = document.getElementById('ruta_zonas');
+              const prev = document.getElementById('rutaZonasPreview');
+              const count = document.getElementById('rutaZonasCount');
+
+              function normalizarLista(valor){
+                const items = (valor||'').split(',').map(s=>s.trim()).filter(Boolean);
+                // dedup case-insensitive y Capitalizar Palabras
+                const uniq = Array.from(new Set(items.map(s=> s.toLowerCase())));
+                const caps = uniq.map(s=> s.split(' ').map(w=> w? (w[0].toUpperCase()+w.slice(1)) : '').join(' '));
+                return caps;
+              }
+
+              function autoResize(el){
+                if (!el) return;
+                el.style.height = 'auto';
+                el.style.height = Math.min(el.scrollHeight, 320) + 'px';
+              }
+
+              function render(){
+                if (!txt || !prev || !count) return;
+                const caps = normalizarLista(txt.value);
+                prev.innerHTML = '';
+                caps.forEach(z=>{
+                  const s = document.createElement('span');
+                  s.className = 'chip';
+                  s.textContent = z;
+                  prev.appendChild(s);
+                });
+                count.textContent = (caps.length||0) + (caps.length===1 ? ' zona' : ' zonas');
+                autoResize(txt);
+              }
+
+              txt?.addEventListener('input', render);
+              // Recalcular cada vez que se abre el modal
+              document.getElementById('rutaModal')?.addEventListener('shown.bs.modal', render);
+              // También forzar una primera renderización por si el modal se maneja sin bootstrap
+              setTimeout(render, 0);
+            })();
+            </script>
+
+            <script>
+            // Sincronización de scroll inferior con la tabla de Paquetes
+            function initHScrollPaquetes(){
+  const cont = document.querySelector('#seccion-paquetes .tabla-container');
+  const tbl = document.getElementById('tablaPaquetes');
+  const hs = document.getElementById('hscrollPaquetes');
+  const inner = document.getElementById('hscrollPaquetesInner');
+  if (!cont || !tbl || !hs || !inner) return;
+  // Ocultar scroll horizontal del contenedor para que solo se vea la barra fija
+  cont.style.overflowX = 'hidden';
+  // Asegurar que la tabla pueda crecer horizontalmente (no wrap)
+  try {
+    tbl.style.whiteSpace = 'nowrap';
+    // Estimar un ancho mínimo por columna para garantizar desplazamiento
+    const colCount = (tbl.tHead && tbl.tHead.rows[0]) ? tbl.tHead.rows[0].cells.length : tbl.rows[0]?.cells.length || 10;
+    const minPerCol = 160; // px por columna
+    const minWidth = Math.max(tbl.scrollWidth, colCount * minPerCol);
+    tbl.style.minWidth = minWidth + 'px';
+    // Evitar que celdas rompan línea
+    tbl.querySelectorAll('th, td').forEach(el=>{ el.style.whiteSpace = 'nowrap'; });
+  } catch(_){ }
+  // Mostrar barra si hay overflow horizontal
+  const contentWidth = Math.max(tbl.scrollWidth, cont.scrollWidth, tbl.offsetWidth);
+  const overflow = contentWidth > cont.clientWidth + 2;
+  hs.style.display = overflow ? 'block' : 'none';
+  // Añadir un pequeño buffer para garantizar llegar al extremo derecho
+  inner.style.width = (contentWidth + 600) + 'px';
+  // Vincular desplazamientos
+  hs.onscroll = ()=> { cont.scrollLeft = hs.scrollLeft; };
+  cont.onscroll = ()=> { hs.scrollLeft = cont.scrollLeft; };
+}
+            </script>
+
+            <script>
+            // Mover la sección Configuración justo debajo de Asignar y dibujar gráfico de torta
+            document.addEventListener('DOMContentLoaded', function(){
+                try {
+                    const asignar = document.getElementById('seccion-asignar');
+                    const config = document.getElementById('seccion-configuracion');
+                    if (asignar && config && asignar.nextElementSibling !== config) {
+                        asignar.parentNode.insertBefore(config, asignar.nextElementSibling);
+                    }
+                } catch(e) { console.warn('Reordenar secciones', e); }
+
+                // Cargar datos de paquetes y graficar: En almacén vs Entregados
+                (async function cargarYGraficarEstados(){
+                    try {
+                        const resp = await fetch('php/admin.php?accion=todos_paquetes', { cache: 'no-store' });
+                        const data = await resp.json();
+                        const items = Array.isArray(data?.datos) ? data.datos : [];
+                        const total = items.length;
+                        const entregados = items.filter(p => String(p?.estado || '').toLowerCase() === 'entregado').length;
+                        const almacen = Math.max(0, total - entregados);
+                        dibujarTorta('graficoEstados', {
+                            'En almacén': almacen,
+                            'Entregados': entregados
+                        });
+                    } catch (e) {
+                        console.warn('No se pudo cargar/graficar estados', e);
+                    }
+                })();
+
+                function dibujarTorta(canvasId, valores){
+                    const canvas = document.getElementById(canvasId);
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const total = Object.values(valores).reduce((a,b)=>a+Number(b||0),0) || 1;
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    const radio = Math.min(centerX, centerY) - 20;
+                    const colores = ['#ffc107', '#28a745'];
+                    let anguloIni = 0;
+                    let idx = 0;
+                    for (const [label, cantidad] of Object.entries(valores)){
+                        const angulo = (Number(cantidad||0)/total) * 2 * Math.PI;
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, radio, anguloIni, anguloIni + angulo);
+                        ctx.lineTo(centerX, centerY);
+                        ctx.fillStyle = colores[idx % colores.length];
+                        ctx.fill();
+                        anguloIni += angulo;
+                        idx++;
+                    }
+                    // Leyenda
+                    let y = 20; idx = 0;
+                    for (const [label, cantidad] of Object.entries(valores)){
+                        ctx.fillStyle = colores[idx % colores.length];
+                        ctx.fillRect(10, y, 15, 15);
+                        ctx.fillStyle = '#333';
+                        ctx.font = '12px Arial';
+                        ctx.fillText(`${label}: ${cantidad}`, 30, y + 12);
+                        y += 20; idx++;
+                    }
+                }
+            });
+            </script>
+
+            
+
+            <section id="seccion-paquetes" class="seccion">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="filtros" style="margin-right: auto;">
+                        <input type="text" id="buscarPaquete" placeholder="Buscar por código o destinatario...">
+                        <select id="filtroEstado">
+                            <option value="">Todos los estados</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="en_transito">En Tránsito</option>
+                            <option value="entregado">Entregado</option>
+                            <option value="devuelto">Devuelto</option>
+                        </select>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-exportar me-2" onclick="exportarAPDF('paquetes')">
+                            <i class="fas fa-file-pdf me-1"></i> PDF
+                        </button>
+                        <button class="btn btn-exportar me-2" onclick="exportarAExcel('paquetes')">
+                            <i class="fas fa-file-excel me-1"></i> Excel
+                        </button>
+                        <button id="btnEjecutarSelenium" class="btn btn-primario" onclick="ejecutarSelenium()">
+                            <i class="fas fa-play me-1"></i> Extracción de datos
+                        </button>
+                        <button id="btnImportarDownloads" class="btn btn-exito ms-2" onclick="importarDesdeDownloadsYMostrar()" title="Importar TODOS los Excel de downloads/ a la BD y mostrarlos">
+                            <i class="fas fa-database me-1"></i> Mostrar datos
+                        </button>
+                    </div>
+                </div>
+                <div class="tabla-container">
+                    <table id="tablaPaquetes">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Departamento</th>
+                                <th>Provincia</th>
+                                <th>Distrito</th>
+                                <th>Estado</th>
+                                <th>Consignado</th>
+                                <th>Dirección Consignado</th>
+                                <th>Peso</th>
+                                <th>Teléfono</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaPaquetes"></tbody>
+                    </table>
+                </div>
+                <!-- Barra de desplazamiento horizontal fija/sincronizada -->
+                <div id="hscrollPaquetes" style="position: fixed; left: 0; right: 0; bottom: 0; height: 14px; overflow-x: auto; overflow-y: hidden; background: rgba(255,255,255,0.95); border-top: 1px solid #e0e0e0; display: none; z-index: 999;">
+                  <div id="hscrollPaquetesInner" style="height: 1px;"></div>
+                </div>
+            </section>
+
+            <!-- Sección Archivos Excel -->
+            <section id="seccion-archivos-excel" class="seccion">
+                <div class="seccion-header d-flex justify-content-between align-items-center">
+                    <h2>Archivos Excel</h2>
+                    <div class="acciones">
+                        <button class="btn btn-primario" onclick="cargarArchivosExcel()">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="tablaArchivosExcel" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre del Archivo</th>
+                                        <th>Tamaño</th>
+                                        <th>Fecha de Modificación</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTablaArchivos">
+                                    <!-- Los archivos se cargarán aquí dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="seccion-finanzas" class="seccion">
+                <div class="seccion-header d-flex justify-content-between align-items-center">
+                    <h2>Finanzas</h2>
+                    <div class="acciones">
+                        <input type="number" id="saldoInicialInput" placeholder="Saldo inicial" step="0.01" style="max-width:140px;">
+                        <input type="number" id="saldoUmbralInput" placeholder="Umbral alerta" step="0.01" style="max-width:140px;">
+                        <button id="btnImportarFinanzas" class="btn btn-primario">Importar/Actualizar</button>
+                        <button id="btnRefrescarFinanzas" class="btn btn-secundario">Refrescar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Caja chica - Movimientos</h3>
+                        <div class="tabla-container">
+                            <table id="tablaCajaChica">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Categoría</th>
+                                        <th>Descripción</th>
+                                        <th>Monto</th>
+                                        <th>Tipo</th>
+                                        <th>Saldo actual</th>
+                                        <th>Alerta</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:16px;">
+                    <div class="card-body">
+                        <h3>Ingresos y Egresos (Mensual)</h3>
+                        <div class="tabla-container">
+                            <table id="tablaResumenIE">
+                                <thead>
+                                    <tr>
+                                        <th>Mes</th>
+                                        <th>Total Ingresos</th>
+                                        <th>Total Egresos</th>
+                                        <th>Resultado Neto</th>
+                                        <th>Alerta Negativo</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:16px;">
+                    <div class="card-body">
+                        <h3>Resumen Hermes</h3>
+                        <div class="tabla-container">
+                            <table id="tablaResumenHermes">
+                                <thead>
+                                    <tr>
+                                        <th>Mes</th>
+                                        <th>Resultado Neto</th>
+                                        <th>Variación %</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                (function(){
+                    const btnImp = document.getElementById('btnImportarFinanzas');
+                    const btnRef = document.getElementById('btnRefrescarFinanzas');
+                    async function cargarCaja(){
+                        try {
+                            const r = await fetch('php/admin.php?accion=finanzas_caja', { cache: 'no-store' });
+                            const d = await r.json();
+                            const tb = document.querySelector('#tablaCajaChica tbody');
+                            tb.innerHTML = '';
+                            (d.datos||[]).forEach(row=>{
+                                const tr = document.createElement('tr');
+                                tr.innerHTML = `
+                                    <td>${row.fecha||''}</td>
+                                    <td>${row.categoria||''}</td>
+                                    <td>${row.descripcion||''}</td>
+                                    <td>${Number(row.monto||0).toFixed(2)}</td>
+                                    <td>${row.tipo||''}</td>
+                                    <td>${row.saldo_actual!=null?Number(row.saldo_actual).toFixed(2):''}</td>
+                                    <td>${Number(row.alerta_saldo_bajo||0) ? '⚠️' : ''}</td>
+                                `;
+                                tb.appendChild(tr);
+                            });
+                        } catch(e) { console.warn(e); }
+                    }
+                    async function cargarResumenIE(){
+                        try {
+                            const r = await fetch('php/admin.php?accion=finanzas_resumen_ie', { cache: 'no-store' });
+                            const d = await r.json();
+                            const tb = document.querySelector('#tablaResumenIE tbody');
+                            tb.innerHTML = '';
+                            (d.datos||[]).forEach(row=>{
+                                const tr = document.createElement('tr');
+                                tr.innerHTML = `
+                                    <td>${row.mes||''}</td>
+                                    <td>${Number(row.total_ingresos||0).toFixed(2)}</td>
+                                    <td>${Number(row.total_egresos||0).toFixed(2)}</td>
+                                    <td>${Number(row.resultado_neto||0).toFixed(2)}</td>
+                                    <td>${Number(row.alerta_resultado_negativo||0) ? '⚠️' : ''}</td>
+                                `;
+                                tb.appendChild(tr);
+                            });
+                        } catch(e) { console.warn(e); }
+                    }
+                    async function cargarResumenHermes(){
+                        try {
+                            const r = await fetch('php/admin.php?accion=finanzas_resumen_hermes', { cache: 'no-store' });
+                            const d = await r.json();
+                            const tb = document.querySelector('#tablaResumenHermes tbody');
+                            tb.innerHTML = '';
+                            (d.datos||[]).forEach(row=>{
+                                const tr = document.createElement('tr');
+                                tr.innerHTML = `
+                                    <td>${row.mes||''}</td>
+                                    <td>${Number(row.resultado_neto||0).toFixed(2)}</td>
+                                    <td>${row.variacion_pct!=null?Number(row.variacion_pct).toFixed(2)+'%':''}</td>
+                                `;
+                                tb.appendChild(tr);
+                            });
+                        } catch(e) { console.warn(e); }
+                    }
+                    async function refrescar(){
+                        await Promise.all([cargarCaja(), cargarResumenIE(), cargarResumenHermes()]);
+                    }
+                    if (btnRef) btnRef.addEventListener('click', refrescar);
+                    if (btnImp) btnImp.addEventListener('click', async function(){
+                        try {
+                            const fd = new FormData();
+                            fd.append('accion','finanzas_importar');
+                            const si = document.getElementById('saldoInicialInput');
+                            const su = document.getElementById('saldoUmbralInput');
+                            if (si && si.value) fd.append('saldo_inicial', si.value);
+                            if (su && su.value) fd.append('saldo_umbral', su.value);
+                            const r = await fetch('php/admin.php', { method:'POST', body: fd });
+                            const raw = await r.text();
+                            let d; try { d = JSON.parse(raw); } catch(_) { alert('Error en importación'); console.error(raw); return; }
+                            if (!d.exito) {
+                                let detalle = '';
+                                if (Array.isArray(d.intentos)) {
+                                    detalle = '\n\nIntentos:' + d.intentos.map((it,i)=>`\n#${i+1} cmd: ${it.cmd}\n- exit: ${it.codigo}\n- salida: ${(it.salida||[]).slice(0,8).join('\n')}`).join('');
+                                }
+                                alert((d.mensaje||'Error al importar') + detalle);
+                                console.warn('Detalle importación:', d);
+                                return;
+                            }
+                            await refrescar();
+                            alert('Importación completada');
+                        } catch(e) { console.warn(e); alert('Error al importar'); }
+                    });
+                    document.addEventListener('DOMContentLoaded', refrescar);
+                })();
+                </script>
+            </section>
+
+            <!-- Sección Tarifas -->
+            <section id="seccion-tarifas" class="seccion">
+                <div class="seccion-header d-flex justify-content-between align-items-center">
+                    <h2>Tarifas por Zona</h2>
+                    <div class="acciones">
+                        <select id="filtroGrupoTarifa" style="max-width:180px;">
+                            <option value="">Todos los grupos</option>
+                            <option>URBANO</option>
+                            <option>PUEBLOS</option>
+                            <option>PLAYAS</option>
+                            <option>COOPERATIVAS</option>
+                            <option>EXCOOPERATIVAS</option>
+                            <option>FERREÑAFE</option>
+                        </select>
+                        <input type="text" id="buscarTarifa" placeholder="Buscar..." style="max-width:200px;">
+                        <button id="btnRefrescarTarifas" class="btn btn-secundario">Refrescar</button>
+                        <button id="btnAplicarTarifas" class="btn btn-exito">Aplicar a paquetes</button>
+                        <button id="btnNuevaTarifa" class="btn btn-primario">Agregar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tabla-container">
+                            <table id="tablaTarifas">
+                                <thead>
+                                    <tr>
+                                        <th>Grupo</th>
+                                        <th>Nombre</th>
+                                        <th>Unidad</th>
+                                        <th>Precio</th>
+                                        <th>Activo</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTarifas"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                (function(){
+                  const tbody = document.getElementById('cuerpoTarifas');
+                  async function cargarTarifas(){
+                    try{
+                      const grupo = document.getElementById('filtroGrupoTarifa').value || '';
+                      const q = document.getElementById('buscarTarifa').value || '';
+                      let url = 'php/admin.php?accion=tarifas_listar';
+                      if (grupo) url += '&grupo=' + encodeURIComponent(grupo);
+                      if (q) url += '&q=' + encodeURIComponent(q);
+                      const r = await fetch(url, { cache:'no-store' });
+                      const d = await r.json();
+                      tbody.innerHTML = '';
+                      (d.datos||[]).forEach(row=>{
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                          <td><input value="${row.grupo||''}" data-id="${row.id}" data-campo="grupo" class="input-plain" style="width:140px"></td>
+                          <td><input value="${row.nombre||''}" data-id="${row.id}" data-campo="nombre" class="input-plain" style="width:180px"></td>
+                          <td>Paquete</td>
+                          <td><input type="number" step="0.01" value="${Number(row.precio||0)}" data-id="${row.id}" data-campo="precio" class="input-plain" style="width:120px"></td>
+                          <td><input type="checkbox" ${Number(row.activo)?'checked':''} data-id="${row.id}" data-campo="activo"></td>
+                          <td>
+                            <button class="btn btn-pequeno btn-primario" data-accion="guardar" data-id="${row.id}">Guardar</button>
+                            <button class="btn btn-pequeno btn-peligro" data-accion="eliminar" data-id="${row.id}">Eliminar</button>
+                          </td>`;
+                        tbody.appendChild(tr);
+                      });
+                    }catch(e){ console.warn('tarifas_listar', e); }
+                  }
+                  async function guardarTarifa(id){
+                    try{
+                      const inputs = tbody.querySelectorAll(`[data-id="${id}"]`);
+                      const fd = new FormData(); fd.append('accion','tarifas_actualizar'); fd.append('id', id);
+                      inputs.forEach(inp=>{
+                        const campo = inp.getAttribute('data-campo');
+                        let val = (inp.type==='checkbox') ? (inp.checked?1:0) : inp.value;
+                        fd.append(campo, val);
+                      });
+                      const r = await fetch('php/admin.php', { method:'POST', body: fd });
+                      const d = await r.json();
+                      if (!d.exito) { alert(d.mensaje||'No se pudo guardar'); return; }
+                      alert('Guardado');
+                      cargarTarifas();
+                    }catch(e){ console.warn('tarifas_actualizar', e); }
+                  }
+                  async function eliminarTarifa(id){
+                    if (!confirm('¿Eliminar tarifa?')) return;
+                    try{
+                      const fd = new FormData(); fd.append('accion','tarifas_eliminar'); fd.append('id', id);
+                      const r = await fetch('php/admin.php', { method:'POST', body: fd });
+                      const d = await r.json();
+                      if (!d.exito) { alert(d.mensaje||'No se pudo eliminar'); return; }
+                      cargarTarifas();
+                    }catch(e){ console.warn('tarifas_eliminar', e); }
+                  }
+                  async function crearTarifa(){
+                    const grupo = prompt('Grupo (URBANO, PUEBLOS, PLAYAS, COOPERATIVAS, EXCOOPERATIVAS, FERREÑAFE):');
+                    if (!grupo) return;
+                    const nombre = prompt('Nombre de la zona:');
+                    if (!nombre) return;
+                    const precio = prompt('Precio por paquete:','0');
+                    const fd = new FormData(); fd.append('accion','tarifas_crear'); fd.append('grupo',grupo.trim().toUpperCase()); fd.append('nombre',nombre.trim()); fd.append('precio', precio||0);
+                    const r = await fetch('php/admin.php', { method:'POST', body: fd });
+                    const d = await r.json();
+                    if (!d.exito) { alert(d.mensaje||'No se pudo crear'); return; }
+                    cargarTarifas();
+                  }
+                  document.getElementById('btnRefrescarTarifas')?.addEventListener('click', cargarTarifas);
+                  document.getElementById('btnNuevaTarifa')?.addEventListener('click', crearTarifa);
+                  document.getElementById('btnAplicarTarifas')?.addEventListener('click', async function(){
+                    if (!confirm('Esto actualizará el precio de los paquetes según la tabla de tarifas. ¿Continuar?')) return;
+                    try{
+                      const fd = new FormData(); fd.append('accion','tarifas_aplicar_paquetes');
+                      const r = await fetch('php/admin.php', { method:'POST', body: fd });
+                      const d = await r.json();
+                      if (!d.exito) { alert(d.mensaje||'Error al aplicar tarifas'); return; }
+                      alert(`Aplicado:\n- Total paquetes: ${d.total}\n- Actualizados: ${d.actualizados}\n- Sin precio: ${d.sin_precio}\n- Sin grupo/distrito: ${d.sin_grupo}`);
+                    }catch(e){ console.warn('tarifas_aplicar_paquetes', e); alert('Error al aplicar'); }
+                  });
+                  document.getElementById('filtroGrupoTarifa')?.addEventListener('change', cargarTarifas);
+                  document.getElementById('buscarTarifa')?.addEventListener('input', function(){ clearTimeout(this.__t); this.__t=setTimeout(cargarTarifas, 300); });
+                  tbody?.addEventListener('click', function(e){
+                    const btn = e.target.closest('button[data-accion]');
+                    if (!btn) return;
+                    const id = btn.getAttribute('data-id');
+                    const acc = btn.getAttribute('data-accion');
+                    if (acc==='guardar') guardarTarifa(id);
+                    if (acc==='eliminar') eliminarTarifa(id);
+                  });
+                  // Exponer para mostrarSeccion
+                  window.cargarTarifas = cargarTarifas;
+                })();
+                </script>
+            </section>
+
+            <section id="seccion-pagos" class="seccion" style="display:none !important;">
+                <div class="seccion-header">
+                    <h2>Gestión de Pagos a Empleados</h2>
+                    <div class="acciones">
+                        <button class="btn btn-primario" onclick="calcularPagos()">🧮 Calcular Pagos</button>
+                        <button class="btn btn-secundario" onclick="configurarTarifas()">⚙️ Configurar Tarifas</button>
+                        <button class="btn btn-exito" onclick="exportarPagos()">📄 Exportar</button>
+                    </div>
+                </div>
+
+                <!-- Filtros de período -->
+                <div class="filtros-pago">
+                    <div class="form-group">
+                        <label>Período Inicio</label>
+                        <input type="date" id="fechaInicioPago" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Período Fin</label>
+                        <input type="date" id="fechaFinPago" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Empleado</label>
+                        <select id="filtroEmpleadoPago">
+                            <option value="">Todos los empleados</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primario" onclick="filtrarPagos()">🔍 Filtrar</button>
+                </div>
+
+                <!-- Tarifas por tipo de ruta -->
+                <div class="tarifas-container">
+                    <h3>Tarifas por Tipo de Ruta</h3>
+                    <div class="tarifas-grid" id="tarifasGrid">
+                        <!-- Se llenan dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Resumen de pagos -->
+                <div class="pagos-resumen">
+                    <div class="pago-card">
+                        <h4>Total a Pagar</h4>
+                        <p class="monto-total" id="totalPagar">$0</p>
+                    </div>
+                    <div class="pago-card">
+                        <h4>Empleados</h4>
+                        <p class="numero" id="totalEmpleados">0</p>
+                    </div>
+                    <div class="pago-card">
+                        <h4>Paquetes Entregados</h4>
+                        <p class="numero" id="totalEntregados">0</p>
+                    </div>
+                    <div class="pago-card">
+                        <h4>Paquetes Devueltos</h4>
+                        <p class="numero" id="totalDevueltos">0</p>
+                    </div>
+                </div>
+
+                <!-- Lista de pagos por empleado -->
+                <div class="pagos-empleados">
+                    <h3>Pagos por Empleado</h3>
+                    <div class="tabla-container">
+                        <table class="tabla">
+                            <thead>
+                                <tr>
+                                    <th>Empleado</th>
+                                    <th>Entregados</th>
+                                    <th>Devueltos</th>
+                                    <th>Urbano</th>
+                                    <th>Distrital</th>
+                                    <th>Interprovincial</th>
+                                    <th>Interurbano</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoTablaPagos">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+
+            
+
+            <div id="modalTarifas" class="modal simple-modal">
+                <div class="modal-contenido">
+                    <div class="modal-header">
+                        <h3>Configurar Tarifas por Ruta</h3>
+                        <span class="cerrar" onclick="cerrarModal('modalTarifas')">&times;</span>
+                    </div>
+                    <form id="formTarifas">
+                        <div class="form-group">
+                            <label>Tipo de Ruta</label>
+                            <select id="tipoRutaTarifa" required>
+                                <option value="urbano">Urbano</option>
+                                <option value="distrital">Distrital</option>
+                                <option value="interprovincial">Interprovincial</option>
+                                <option value="interurbano">Interurbano</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tarifa Base ($)</label>
+                            <input type="number" id="tarifaBase" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tarifa por Kg ($)</label>
+                            <input type="number" id="tarifaPorKg" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comisión Empleado (%)</label>
+                            <input type="number" id="comisionEmpleado" step="0.01" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea id="descripcionTarifa" rows="3"></textarea>
+                        </div>
+                        <div class="modal-acciones">
+                            <button type="button" class="btn btn-secundario" onclick="cerrarModal('modalTarifas')">Cancelar</button>
+                            <button type="submit" class="btn btn-primario">Guardar Tarifa</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="modalEditarCantidades" class="modal simple-modal">
+                <div class="modal-contenido">
+                    <div class="modal-header">
+                        <h3>Editar Cantidades por Zona</h3>
+                        <span class="cerrar" onclick="cerrarModal('modalEditarCantidades')">&times;</span>
+                    </div>
+                    <div class="empleado-info">
+                        <h4 id="empleadoEditando">Empleado: </h4>
+                        <p>Período: <span id="periodoEditando"></span></p>
+                    </div>
+                    
+                    <div class="zonas-grid">
+                        <div class="zona-card">
+                            <h5>🏙️ Urbano</h5>
+                            <div class="cantidad-controls">
+                                <label>Entregados:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('urbano', 'entregados', -1)">-</button>
+                                    <input type="number" id="urbano-entregados" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('urbano', 'entregados', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="cantidad-controls">
+                                <label>Devueltos:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('urbano', 'devueltos', -1)">-</button>
+                                    <input type="number" id="urbano-devueltos" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('urbano', 'devueltos', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="zona-total">Total: $<span id="urbano-total">0</span></div>
+                        </div>
+
+                        <div class="zona-card">
+                            <h5>🏘️ Distrital</h5>
+                            <div class="cantidad-controls">
+                                <label>Entregados:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('distrital', 'entregados', -1)">-</button>
+                                    <input type="number" id="distrital-entregados" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('distrital', 'entregados', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="cantidad-controls">
+                                <label>Devueltos:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('distrital', 'devueltos', -1)">-</button>
+                                    <input type="number" id="distrital-devueltos" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('distrital', 'devueltos', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="zona-total">Total: $<span id="distrital-total">0</span></div>
+                        </div>
+
+                        <div class="zona-card">
+                            <h5>🌍 Interprovincial</h5>
+                            <div class="cantidad-controls">
+                                <label>Entregados:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('interprovincial', 'entregados', -1)">-</button>
+                                    <input type="number" id="interprovincial-entregados" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('interprovincial', 'entregados', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="cantidad-controls">
+                                <label>Devueltos:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('interprovincial', 'devueltos', -1)">-</button>
+                                    <input type="number" id="interprovincial-devueltos" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('interprovincial', 'devueltos', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="zona-total">Total: $<span id="interprovincial-total">0</span></div>
+                        </div>
+
+                        <div class="zona-card">
+                            <h5>🚗 Interurbano</h5>
+                            <div class="cantidad-controls">
+                                <label>Entregados:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('interurbano', 'entregados', -1)">-</button>
+                                    <input type="number" id="interurbano-entregados" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('interurbano', 'entregados', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="cantidad-controls">
+                                <label>Devueltos:</label>
+                                <div class="input-group">
+                                    <button type="button" onclick="ajustarCantidad('interurbano', 'devueltos', -1)">-</button>
+                                    <input type="number" id="interurbano-devueltos" min="0" value="0">
+                                    <button type="button" onclick="ajustarCantidad('interurbano', 'devueltos', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="zona-total">Total: $<span id="interurbano-total">0</span></div>
+                        </div>
+                    </div>
+
+                    <div class="resumen-edicion">
+                        <div class="total-general">
+                            <h4>Total General: $<span id="totalGeneralEdicion">0</span></h4>
+                        </div>
+                    </div>
+
+                    <div class="modal-acciones">
+                        <button type="button" class="btn btn-secundario" onclick="cerrarModal('modalEditarCantidades')">Cancelar</button>
+                        <button type="button" class="btn btn-primario" onclick="guardarCantidades()">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalVehiculo" class="modal">
+                <div class="modal-contenido">
+                    <span class="cerrar" onclick="cerrarModal('modalVehiculo')">&times;</span>
+                    <h2>Nuevo Vehículo</h2>
+                    <form id="formVehiculo" onsubmit="guardarVehiculo(event)">
+                        <div class="form-grupo">
+                            <label>Placa:</label>
+                            <input type="text" id="placaVehiculo" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Marca:</label>
+                            <input type="text" id="marcaVehiculo" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Modelo:</label>
+                            <input type="text" id="modeloVehiculo" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Capacidad (kg):</label>
+                            <input type="number" id="capacidadVehiculo" step="0.1" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Estado:</label>
+                            <select id="estadoVehiculo" required>
+                                <option value="disponible">Disponible</option>
+                                <option value="en_uso">En Uso</option>
+                                <option value="mantenimiento">Mantenimiento</option>
+                            </select>
+                        </div>
+                        <div class="form-acciones">
+                            <button type="submit" class="btn btn-primario">Guardar</button>
+                            <button type="button" class="btn btn-secundario" onclick="cerrarModal('modalVehiculo')">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="modalRuta" class="modal">
+                <div class="modal-contenido">
+                    <span class="cerrar" onclick="cerrarModal('modalRuta')">&times;</span>
+                    <h2>Nueva Ruta</h2>
+                    <form id="formRuta" onsubmit="guardarRuta(event)">
+                        <div class="form-grupo">
+                            <label>Nombre de la Ruta:</label>
+                            <input type="text" id="nombreRuta" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Origen:</label>
+                            <input type="text" id="origenRuta" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Destino:</label>
+                            <input type="text" id="destinoRuta" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Zonas (separadas por coma):</label>
+                            <input type="text" id="zonasRuta" placeholder="Ej: Chiclayo, JLO, La Victoria, Santa Victoria">
+                        </div>
+                        <div class="form-grupo">
+                            <label>Distancia (km):</label>
+                            <input type="number" id="distanciaRuta" step="0.1" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Tiempo Estimado (minutos):</label>
+                            <input type="number" id="tiempoRuta" required>
+                        </div>
+                        <div class="form-acciones">
+                            <button type="submit" class="btn btn-primario">Guardar</button>
+                            <button type="button" class="btn btn-secundario" onclick="cerrarModal('modalRuta')">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal para Empleado -->
+            <div class="modal fade boots-fixed" id="modalEmpleado" tabindex="-1" aria-labelledby="modalEmpleadoLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEmpleadoLabel">Nuevo Empleado</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formEmpleado" onsubmit="guardarEmpleado(event)">
+                        <div class="form-grupo">
+                            <label>Nombre:</label>
+                            <input type="text" id="nombreEmpleado" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Usuario:</label>
+                            <input type="text" id="usuarioEmpleado" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label>Email:</label>
+                            <input type="email" id="emailEmpleado" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label class="form-label">Tipo:</label>
+                            <select id="tipoEmpleado" class="form-select" required>
+                                <option value="empleado">Empleado</option>
+                                <option value="asistente">Asistente</option>
+                            </select>
+                        </div>
+                        <div class="form-grupo">
+                            <label class="form-label">Contraseña:</label>
+                            <input type="password" id="claveEmpleado" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts en el orden correcto -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <style>
+      /* Asegurar visual consistente de los modales Bootstrap (evitar estilos heredados de modales simples) */
+      .modal.boots-fixed { z-index: 1055; }
+      .modal.boots-fixed .modal-content { background:#fff !important; color:#111; }
+      .modal-backdrop.show { opacity: .5; }
+      /* Modales simples (antiguos) mantienen su comportamiento con click-out */
+      .simple-modal { z-index: 1040; }
+
+      /* Estilo elegante para el modal de Rutas */
+      #rutaModal .modal-content{
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 10px 35px rgba(0,0,0,.25);
+        overflow: hidden;
+      }
+      #rutaModal .modal-header{
+        background: linear-gradient(135deg, #111827, #1f2937);
+        color: #f9fafb;
+        border-bottom: none;
+      }
+      #rutaModal .modal-title{ font-weight: 600; letter-spacing:.4px; }
+      #rutaModal .modal-body{ padding: 20px 22px; }
+      #rutaModal label.form-label{ font-weight: 600; color:#374151; }
+      #rutaModal input.form-control, #rutaModal textarea.form-control{
+        border-radius: 8px; border:1px solid #e5e7eb;
+      }
+      #rutaModal textarea#ruta_zonas{ min-height: 180px; }
+      #rutaModal .modal-footer{ border-top:none; padding: 16px 22px; }
+      #rutaModal .btn-primary{ background:#111827; border-color:#111827; }
+      #rutaModal .btn-primary:hover{ background:#0b1220; border-color:#0b1220; }
+      #rutaModal .btn-secondary{ background:#6b7280; border-color:#6b7280; }
+
+      /* Estilo elegante para el modal de Usuario */
+      #usuarioModal .modal-content{
+        border: none; border-radius: 12px; box-shadow: 0 10px 35px rgba(0,0,0,.25); overflow: hidden;
+      }
+      #usuarioModal .modal-header{ background: linear-gradient(135deg,#111827,#1f2937); color:#f9fafb; border-bottom: none; }
+      #usuarioModal .modal-title{ font-weight: 600; letter-spacing:.4px; }
+      #usuarioModal .modal-body{ padding: 20px 22px; }
+      #usuarioModal label.form-label{ font-weight: 600; color:#374151; }
+      #usuarioModal input.form-control, #usuarioModal select.form-select{ border-radius:8px; border:1px solid #e5e7eb; }
+      #usuarioModal .modal-footer{ border-top:none; padding: 16px 22px; }
+      #usuarioModal .btn-primary{ background:#111827; border-color:#111827; }
+      #usuarioModal .btn-primary:hover{ background:#0b1220; border-color:#0b1220; }
+      #usuarioModal .btn-secondary{ background:#6b7280; border-color:#6b7280; }
+      #usuarioModal .form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+      #usuarioModal .form-grid .mb-3{ margin-bottom: 0!important; }
+      @media (max-width: 768px){ #usuarioModal .form-grid{ grid-template-columns: 1fr; } }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // Verificar que todas las dependencias estén cargadas
+        if (typeof jQuery == 'undefined') {
+            console.error('Error: jQuery no se ha cargado correctamente');
+        } else {
+            console.log('jQuery versión:', $.fn.jquery);
+        }
+        
+        if (typeof bootstrap === 'undefined') {
+            console.error('Error: Bootstrap no se ha cargado correctamente');
+        } else {
+            console.log('Bootstrap cargado correctamente');
+        }
+        
+        // Función para cerrar sesión - definida globalmente
+        function cerrarSesion() {
+            if (confirm('¿Está seguro que desea cerrar sesión?')) {
+                // Limpiar el almacenamiento local si es necesario
+                if (typeof(Storage) !== 'undefined') {
+                    localStorage.removeItem('sesion_activa');
+                    sessionStorage.clear();
+                }
+                
+                // Realizar la petición de cierre de sesión
+                fetch('php/cerrar_sesion.php', {
+                    method: 'GET',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Cache-Control': 'no-cache, no-store',
+                        'Pragma': 'no-cache'
+                    }
+                })
+                .then(response => {
+                    // Asegurarse de que la redirección ocurra incluso si hay un error en la respuesta
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    // Forzar recarga sin caché
+                    window.location.replace('login.html');
+                })
+                .catch(error => {
+                    console.error('Error al cerrar sesión:', error);
+                    // Redirigir de todas formas
+                    window.location.replace('login.html');
+                });
+            }
+        }
+
+        // Función para abrir modal
+        function abrirModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        // Función para cerrar modal
+        function cerrarModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            // Limpiar formularios
+            const form = document.querySelector(`#${modalId} form`);
+            if (form) form.reset();
+        }
+
+        // Función para actualizar página
+        function actualizar() {
+            location.reload();
+        }
+        
+        // ====== Asignaciones: empleados y distritos ======
+        async function cargarEmpleadosAsignar() {
+            try {
+                const resp = await fetch('php/asignaciones.php?accion=empleados', { cache: 'no-store' });
+                const data = await resp.json();
+                const sel = document.getElementById('selEmpleadoAsignar');
+                if (!sel) return;
+                sel.innerHTML = '<option value="">Seleccione empleado...</option>' +
+                    (data.datos || []).map(e => `<option value="${e.id}">${e.nombre}</option>`).join('');
+            } catch (e) { console.error('cargarEmpleadosAsignar', e); }
+        }
+
+        async function cargarDistritosAsignar() {
+            try {
+                const resp = await fetch('php/asignaciones.php?accion=distritos', { cache: 'no-store' });
+                const data = await resp.json();
+                const sel = document.getElementById('selDistritosAsignar');
+                if (!sel) return;
+                sel.innerHTML = (data.datos || []).map(d => `<option value="${d}">${d}</option>`).join('');
+            } catch (e) { console.error('cargarDistritosAsignar', e); }
+        }
+
+        async function asignarPaquetesPorDistrito() {
+            try {
+                const selEmp = document.getElementById('selEmpleadoAsignar');
+                const selDis = document.getElementById('selDistritosAsignar');
+                const resBox = document.getElementById('resultadoAsignacion');
+                const empleado_id = parseInt(selEmp?.value || '0', 10);
+                const distritos = Array.from(selDis?.selectedOptions || []).map(o => o.value);
+                if (!empleado_id) { alert('Seleccione un empleado'); return; }
+                if (!distritos.length) { alert('Seleccione al menos un distrito'); return; }
+                const form = new FormData();
+                form.append('accion', 'asignar_por_distrito');
+                form.append('empleado_id', String(empleado_id));
+                distritos.forEach(d => form.append('distritos[]', d));
+                const resp = await fetch('php/asignaciones.php', { method:'POST', body: form });
+                const data = await resp.json();
+                if (!data.exito) { alert('Error: ' + (data.mensaje || 'No se pudo asignar')); return; }
+                resBox.textContent = `Asignados: ${data.asignados || 0}`;
+                // Opcional: recargar métricas o asignaciones
+            } catch (e) {
+                console.error('asignarPaquetesPorDistrito', e);
+                alert('Error al asignar: ' + e.message);
+            }
+        }
+        
+        // Función para mostrar el formulario de usuario
+        function mostrarFormularioUsuario(accion, id = '') {
+            // Verificar si Bootstrap está cargado
+            if (typeof bootstrap === 'undefined' || !bootstrap.Modal) {
+                console.error('Bootstrap no está cargado correctamente');
+                alert('Error: No se pudo cargar el formulario. Por favor, recarga la página.');
+                return;
+            }
+            
+            const modalElement = document.getElementById('usuarioModal');
+            if (!modalElement) {
+                console.error('No se encontró el elemento del modal');
+                return;
+            }
+            
+            const titulo = document.getElementById('usuarioModalLabel');
+            const form = document.getElementById('usuarioForm');
+            
+            if (!titulo || !form) {
+                console.error('No se encontraron los elementos necesarios del formulario');
+                return;
+            }
+            
+            try {
+                const modal = new bootstrap.Modal(modalElement);
+                
+                if (accion === 'nuevo') {
+                    titulo.textContent = 'Nuevo Usuario';
+                    form.reset();
+                    // Establecer valores por defecto
+                    const usuarioId = document.getElementById('usuario_id');
+                    const tipo = document.getElementById('tipo');
+                    const activo = document.getElementById('activo');
+                    
+                    if (usuarioId) usuarioId.value = '';
+                    if (tipo) tipo.value = 'empleado';
+                    if (activo) activo.checked = true;
+                } else if (accion === 'editar') {
+                    titulo.textContent = 'Editar Usuario';
+                    // Cargar datos del usuario con el ID proporcionado
+                    console.log('Editando usuario con ID:', id);
+                }
+                
+                modal.show();
+            } catch (error) {
+                console.error('Error al mostrar el formulario:', error);
+                alert('Ocurrió un error al intentar abrir el formulario');
+            }
+        }
+        
+        // Función para nuevos empleados, vehículos, rutas
+        function nuevoEmpleado() {
+            // Resetear el formulario
+            const form = document.getElementById('formEmpleado');
+            form.reset();
+            
+            // Cambiar el título del modal
+            document.getElementById('modalEmpleadoLabel').textContent = 'Nuevo Empleado';
+            
+            // Establecer la acción como 'crear'
+            form.setAttribute('data-accion', 'crear');
+            
+            // Mostrar el modal usando Bootstrap 5
+            const modal = new bootstrap.Modal(document.getElementById('modalEmpleado'));
+            modal.show();
+        }
+        
+        function nuevoVehiculo() {
+            abrirModal('modalVehiculo');
+        }
+        
+        function nuevaRuta() {
+            abrirModal('modalRuta');
+        }
+        
+        // Funciones para guardar nuevos registros
+        function guardarVehiculo() {
+            const formData = new FormData();
+            // Acción esperada por admin.php
+            formData.append('accion', 'nuevo_vehiculo');
+            // IDs correctos del modal de vehículo
+            formData.append('placa', document.getElementById('placaVehiculo').value);
+            formData.append('marca', document.getElementById('marcaVehiculo').value);
+            formData.append('modelo', document.getElementById('modeloVehiculo').value);
+            formData.append('capacidad', document.getElementById('capacidadVehiculo').value);
+            formData.append('estado', document.getElementById('estadoVehiculo').value);
+
+            fetch('php/admin.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exito) {
+                    alert('Vehículo guardado exitosamente');
+                    document.getElementById('formVehiculo').reset();
+                    cerrarModal('modalVehiculo');
+                    cargarVehiculos();
+                } else {
+                    alert('Error: ' + (data.mensaje || 'Error desconocido'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al guardar vehículo. Verifica la consola para más detalles.');
+            });
+        }
+        
+        function guardarRuta(event) {
+            event.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('accion', 'nueva_ruta');
+            formData.append('nombre', document.getElementById('nombreRuta').value);
+            formData.append('origen', document.getElementById('origenRuta').value);
+            formData.append('destino', document.getElementById('destinoRuta').value);
+            const zonasVal = (document.getElementById('zonasRuta')?.value || '').trim();
+            if (zonasVal) formData.append('zonas', zonasVal);
+            formData.append('distancia', document.getElementById('distanciaRuta').value);
+            formData.append('tiempo_estimado', document.getElementById('tiempoRuta').value);
+            
+            fetch('php/admin.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exito) {
+                    alert('Ruta creada exitosamente');
+                    cerrarModal('modalRuta');
+                    cargarRutas();
+                    cargarRutasConfig();
+                } else {
+                    alert('Error: ' + data.mensaje);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al crear ruta');
+            });
+        }
+        
+        function guardarEmpleado(event) {
+            event.preventDefault();
+            
+            // Obtener referencias a los elementos del formulario
+            const form = document.getElementById('formEmpleado');
+            const formData = new FormData(form);
+            formData.append('accion', 'nuevo_empleado');
+            
+            // Validar campos obligatorios
+            const requiredFields = ['nombre', 'usuario', 'email', 'clave', 'tipo'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const value = formData.get(field);
+                if (!value || value.trim() === '') {
+                    alert(`El campo ${field} es obligatorio`);
+                    isValid = false;
+                    return;
+                }
+            });
+            
+            if (!isValid) return;
+            
+            // Mostrar indicador de carga
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+            
+            // Enviar datos al servidor
+            fetch('php/admin.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.exito) {
+                    // Mostrar mensaje de éxito
+                    const successAlert = document.createElement('div');
+                    successAlert.className = 'alert alert-success';
+                    successAlert.role = 'alert';
+                    successAlert.innerHTML = `
+                        <i class="fas fa-check-circle"></i> 
+                        ${data.mensaje || 'Empleado creado exitosamente'}
+                    `;
+                    
+                    // Insertar el mensaje antes del formulario
+                    form.parentNode.insertBefore(successAlert, form);
+                    
+                    // Limpiar el formulario
+                    form.reset();
+                    
+                    // Cerrar el modal después de 1.5 segundos
+                    setTimeout(() => {
+                        cerrarModal('modalEmpleado');
+                        cargarEmpleados();
+                        
+                        // Eliminar el mensaje de éxito después de cerrar el modal
+                        if (successAlert.parentNode) {
+                            successAlert.parentNode.removeChild(successAlert);
+                        }
+                    }, 1500);
+                    
+                } else {
+                    // Mostrar mensaje de error
+                    throw new Error(data.mensaje || 'Error desconocido al crear empleado');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                
+                // Mostrar mensaje de error al usuario
+                const errorAlert = document.createElement('div');
+                errorAlert.className = 'alert alert-danger';
+                errorAlert.role = 'alert';
+                errorAlert.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i> 
+                    ${error.message || 'Error al crear empleado. Por favor, inténtalo de nuevo.'}
+                `;
+                
+                // Insertar el mensaje antes del formulario
+                form.parentNode.insertBefore(errorAlert, form);
+                
+                // Eliminar el mensaje después de 5 segundos
+                setTimeout(() => {
+                    if (errorAlert.parentNode) {
+                        errorAlert.parentNode.removeChild(errorAlert);
+                    }
+                }, 5000);
+            })
+            .finally(() => {
+                // Restaurar el botón
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            });
+        }
+        
+        function generarReporte() {
+            const tipo = document.getElementById('tipoReporte').value;
+            const fechaInicio = document.getElementById('reporteFechaInicio').value;
+            const fechaFin = document.getElementById('reporteFechaFin').value;
+            const formato = document.getElementById('formatoDescarga').value;
+            
+            const formData = new FormData();
+            formData.append('accion', 'generar_reporte');
+            formData.append('tipo', tipo);
+            formData.append('fecha_inicio', fechaInicio);
+            formData.append('fecha_fin', fechaFin);
+            formData.append('formato', formato);
+            
+            if (formato === 'ver') {
+                // Mostrar en pantalla
+                fetch('php/admin.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exito) {
+                        mostrarReporte(data.datos, tipo);
+                    } else {
+                        alert('Error al generar reporte: ' + data.mensaje);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al generar reporte');
+                });
+            } else {
+                // Descargar archivo
+                const url = 'php/admin.php?' + new URLSearchParams({
+                    accion: 'generar_reporte',
+                    tipo: tipo,
+                    fecha_inicio: fechaInicio,
+                    fecha_fin: fechaFin,
+                    formato: formato
+                });
+                
+                // Crear enlace temporal para descarga
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `reporte_${tipo}_${new Date().toISOString().split('T')[0]}.${formato === 'excel' ? 'xlsx' : 'pdf'}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+        
+        function mostrarReporte(datos, tipo) {
+            const contenedor = document.getElementById('contenidoReporte');
+            let html = `<h4>Reporte de ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</h4>`;
+            
+            if (datos.length === 0) {
+                html += '<p>No hay datos para mostrar en el período seleccionado.</p>';
+            } else {
+                html += '<table class="tabla-reporte"><thead><tr>';
+                
+                // Headers según tipo de reporte
+                if (tipo === 'paquetes') {
+                    html += '<th>Código</th><th>Remitente</th><th>Destinatario</th><th>Estado</th><th>Precio</th><th>Fecha</th>';
+                } else if (tipo === 'ventas') {
+                    html += '<th>Fecha</th><th>Total Paquetes</th><th>Ingresos</th>';
+                } else if (tipo === 'empleados') {
+                    html += '<th>Nombre</th><th>Usuario</th><th>Tipo</th><th>Estado</th><th>Fecha Registro</th>';
+                } else if (tipo === 'vehiculos') {
+                    html += '<th>Placa</th><th>Marca</th><th>Modelo</th><th>Estado</th><th>Empleado</th>';
+                }
+                
+                html += '</tr></thead><tbody>';
+                
+                datos.forEach(item => {
+                    html += '<tr>';
+                    if (tipo === 'paquetes') {
+                        html += `<td>${item.codigo}</td><td>${item.remitente}</td><td>${item.destinatario}</td><td>${item.estado}</td><td>$${item.precio}</td><td>${new Date(item.fecha_envio).toLocaleDateString()}</td>`;
+                    } else if (tipo === 'ventas') {
+                        html += `<td>${item.fecha}</td><td>${item.total_paquetes}</td><td>$${item.ingresos}</td>`;
+                    } else if (tipo === 'empleados') {
+                        html += `<td>${item.nombre}</td><td>${item.usuario}</td><td>${item.tipo}</td><td>${item.activo ? 'Activo' : 'Inactivo'}</td><td>${new Date(item.fecha_registro).toLocaleDateString()}</td>`;
+                    } else if (tipo === 'vehiculos') {
+                        html += `<td>${item.placa}</td><td>${item.marca}</td><td>${item.modelo}</td><td>${item.estado}</td><td>${item.empleado_nombre || 'Sin asignar'}</td>`;
+                    }
+                    html += '</tr>';
+                });
+                
+                html += '</tbody></table>';
+            }
+            
+            contenedor.innerHTML = html;
+        }
+        
+        function calcularPagos() {
+            alert('Función de calcular pagos - Por implementar');
+        }
+        
+        function configurarTarifas() {
+            alert('Función de configurar tarifas - Por implementar');
+        }
+        
+        function exportarPagos() {
+            alert('Función de exportar pagos - Por implementar');
+        }
+        
+        // Carga el último Excel descargado y lo renderiza en la tabla de Paquetes
+async function cargarUltimoExcelEnPaquetes() {
+    try {
+        // 1) Pedir al servidor cuál es el archivo más reciente
+        const metaResp = await fetch('php/latest_excel.php', { cache: 'no-store' });
+        const meta = await metaResp.json();
+        if (!meta.exito) {
+            alert('No se pudo localizar el Excel: ' + (meta.mensaje || 'Desconocido'));
+            return;
+        }
+
+        // 2) Descargar el Excel como ArrayBuffer
+        const fileResp = await fetch(meta.ruta_relativa, { cache: 'no-store' });
+        if (!fileResp.ok) {
+            throw new Error('No se pudo descargar el archivo Excel: ' + meta.ruta_relativa);
+        }
+        const buf = await fileResp.arrayBuffer();
+
+        // 3) Parsear usando SheetJS (XLSX ya está incluido en la página)
+        const wb = XLSX.read(buf, { type: 'array' });
+        const hoja = wb.SheetNames[0];
+        const ws = wb.Sheets[hoja];
+        // header:1 => matriz de filas, defval:'' para no tener undefined
+        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+
+        if (!rows || rows.length === 0) {
+            alert('El Excel está vacío o no tiene datos.');
+            return;
+        }
+
+        // 4) Renderizar
+        renderPaquetesDesdeExcel(rows);
+
+        // 5) Actualizar métrica principal
+        const total = rows.length > 1 ? (rows.length - 1) : 0;
+        const totalLbl = document.getElementById('totalPaquetes');
+        if (totalLbl) totalLbl.textContent = String(total);
+
+        // 6) Asegurar que la sección Paquetes esté visible
+        const enlacePaquetes = document.querySelector('a[onclick*=\"paquetes\"]');
+        if (enlacePaquetes) mostrarSeccion('paquetes', enlacePaquetes);
+
+    } catch (e) {
+        console.error('Error cargando y renderizando Excel:', e);
+        alert('Error al cargar el Excel: ' + e.message);
+    }
+}
+// Carga todos los paquetes desde BD y los pinta
+async function cargarPaquetesDesdeBD() {
+  try {
+    const resp = await fetch('php/paquetes.php?limit=2000', { cache: 'no-store' });
+    const raw = await resp.text();
+    let data;
+    try { data = JSON.parse(raw); } catch (e) {
+      alert('Error cargando paquetes desde BD.\nLa respuesta no es JSON.\n\nCuerpo (primeros 2000 chars):\n' + raw.slice(0,2000));
+      return;
+    }
+    if (!data.exito) throw new Error(data.mensaje || 'Error desconocido');
+
+    // Guardar dataset original y headers para búsqueda/filtro
+    window.__paquetesOriginal = Array.isArray(data.datos) ? data.datos : [];
+    window.__paquetesHeaders = data.headers && data.headers.length ? data.headers : inferHeaders(window.__paquetesOriginal);
+    aplicarBusquedaYFiltro();
+
+    const totalLbl = document.getElementById('totalPaquetes');
+    if (totalLbl) totalLbl.textContent = String(data.total || window.__paquetesOriginal.length || 0);
+
+    // No cambiar de sección automáticamente aquí para respetar la vista actual
+  } catch (e) {
+    console.error('Error cargando desde BD:', e);
+    alert('Error cargando paquetes desde BD: ' + e.message);
+  }
+}
+async function ejecutarSelenium() {
+  try {
+    const btn = document.getElementById('btnEjecutarSelenium');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Extrayendo datos...';
+    }
+
+    // Ejecuta Selenium para descargar el Excel (usa php/run_selenium.php)
+    const resp = await fetch('php/run_selenium.php', { method: 'POST', cache: 'no-store' });
+    const raw = await resp.text();
+    let data;
+    try { data = JSON.parse(raw); } catch (e) {
+      alert('La respuesta de Selenium no es JSON.\n\nCuerpo:\n' + raw.slice(0,2000));
+      return;
+    }
+    if (!data.exito) {
+      alert('Selenium reportó error: ' + (data.mensaje || 'Desconocido'));
+      return;
+    }
+    alert(data.mensaje || 'Descarga completada. Revisando Excel más reciente...');
+
+    // Opción A: cargar el último Excel en la tabla directamente
+    if (typeof cargarUltimoExcelEnPaquetes === 'function') {
+      await cargarUltimoExcelEnPaquetes();
+    } else {
+      // Opción B: si prefieres cargar desde BD (si ya importaste a BD)
+      if (typeof cargarPaquetesDesdeBD === 'function') {
+        await cargarPaquetesDesdeBD();
+    // Después de mostrar datos manualmente, sí navegar a Paquetes
+    const enlacePaquetes = document.querySelector('a[onclick*="paquetes"]');
+    if (enlacePaquetes) mostrarSeccion('paquetes', enlacePaquetes);
+      }
+    }
+  } catch (e) {
+    console.error('Error en ejecutarSelenium():', e);
+    alert('Error ejecutando Selenium: ' + e.message);
+  } finally {
+    const btn = document.getElementById('btnEjecutarSelenium');
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-play me-1"></i> Extracción de datos';
+    }
+  }
+}
+/* Importa todos los Excel de downloads/ a la BD y luego los muestra en la tabla */
+async function importarDesdeDownloadsYMostrar() {
+  try {
+    const btn = document.getElementById('btnImportarDownloads');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mostrando datos...'; }
+
+    const resp = await fetch('php/import_paquetes.php', { method: 'POST', cache: 'no-store' });
+    const raw = await resp.text();
+    let data;
+    try { data = JSON.parse(raw); } catch (e) {
+      alert('La respuesta de importación no es JSON.\n\nCuerpo (primeros 2000 chars):\n' + raw.slice(0,2000));
+      return;
+    }
+    if (!data.exito) {
+      alert('Error al importar: ' + (data.mensaje || 'Desconocido'));
+      return;
+    }
+
+    const detalle = Array.isArray(data.detalle)
+      ? ('\n' + data.detalle.map(d => `- ${d.archivo || ''}: ${d.insertados ?? d.error}`).join('\n'))
+      : '';
+    alert(`Importación completada. Insertados: ${data.insertados || 0}${detalle}`);
+
+    await cargarPaquetesDesdeBD();
+  } catch (e) {
+    console.error('Error en importarDesdeDownloadsYMostrar:', e);
+    alert('Error en importación: ' + e.message);
+  } finally {
+    const btn = document.getElementById('btnImportarDownloads');
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-database me-1"></i> Mostrar datos'; }
+  }
+}
+
+// Exponer en global para poder llamarla desde consola o botones
+window.cargarPaquetesDesdeBD = cargarPaquetesDesdeBD;
+window.inferHeaders = inferHeaders;
+window.renderPaquetesDesdeBD = renderPaquetesDesdeBD;
+
+// Búsqueda y filtro en Paquetes
+function obtenerCampo(row, posiblesClaves){
+  for (const k of posiblesClaves){ if (row[k] != null) return String(row[k]); }
+  // intentar con variantes por mayúsculas
+  for (const k of posiblesClaves){
+    const keys = Object.keys(row);
+    const hit = keys.find(x=> x.toLowerCase()===String(k).toLowerCase());
+    if (hit){ return String(row[hit]); }
+  }
+  return '';
+}
+function aplicarBusquedaYFiltro(){
+  const q = (document.getElementById('buscarPaquete')?.value || '').trim().toLowerCase();
+  const estadoSel = (document.getElementById('filtroEstado')?.value || '').trim().toLowerCase();
+  const base = Array.isArray(window.__paquetesOriginal) ? window.__paquetesOriginal : [];
+  const filtrados = base.filter(row=>{
+    const codigo = obtenerCampo(row, ['Código','codigo','CODIGO']);
+    const consignado = obtenerCampo(row, ['Consignado','consignado','CONSIGNADO','Destinatario','destinatario','NOMBRE']);
+    const estado = obtenerCampo(row, ['Estado','estado','ESTADO']).toLowerCase();
+    const matchTexto = !q || codigo.toLowerCase().includes(q) || consignado.toLowerCase().includes(q);
+    const matchEstado = !estadoSel || estado === estadoSel;
+    return matchTexto && matchEstado;
+  });
+  renderPaquetesDesdeBD(window.__paquetesHeaders || inferHeaders(filtrados), filtrados);
+}
+// Eventos de UI
+document.getElementById('buscarPaquete')?.addEventListener('input', function(){ aplicarBusquedaYFiltro(); });
+document.getElementById('filtroEstado')?.addEventListener('change', function(){ aplicarBusquedaYFiltro(); });
+// Si no vienen headers, intenta inferir por llaves del primer objeto
+function inferHeaders(rows) {
+  if (!Array.isArray(rows) || !rows.length) return [];
+  return Object.keys(rows[0]);
+}
+
+function renderPaquetesDesdeBD(headers, rows) {
+  // Estilos compactos
+  try {
+    const tabla = document.getElementById('tablaPaquetes');
+    if (tabla){ tabla.style.fontSize='12px'; tabla.querySelectorAll('th,td').forEach(c=>{ c.style.padding='4px 8px'; }); }
+  } catch(_){ }
+
+  // Normalizar claves
+  const filasProcesadas = rows.map(row => {
+    const nuevo = {}; Object.keys(row||{}).forEach(k=>{ nuevo[String(k).toLowerCase()] = row[k]; }); return nuevo;
+  });
+
+  const tabla = document.getElementById('tablaPaquetes');
+  if (!tabla) return alert('No se encontró la tabla de Paquetes (id="tablaPaquetes").');
+  const thead = tabla.querySelector('thead');
+  const tbody = tabla.querySelector('tbody');
+  if (!thead || !tbody) return alert('La tabla de Paquetes no tiene thead/tbody.');
+
+  // Encabezados fijos solicitados
+  const ordenFinal = [
+    'código',
+    'departamento',
+    'provincia',
+    'distrito',
+    'estado',
+    'consignado',
+    'dirección consignado',
+    'peso',
+    'teléfono',
+    'acciones'
+  ];
+  thead.innerHTML = '<tr>' + ordenFinal.map(lbl=> `<th>${lbl.replace(/\b\w/g, c=>c.toUpperCase())}</th>`).join('') + '</tr>';
+
+  const esc = (s) => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  let html = '';
+  for (const r of filasProcesadas) {
+    const codigo = r['codigo'] || '';
+    const telefono = r['telefono'] || '';
+    const cliente = r['consignado'] || r['destinatario'] || '';
+    const estado = r['estado'] || '';
+    // Helper: obtener valor por columna visible del thead (tolerante a acentos/variantes)
+    const getVal = (label)=>{
+      const lab = String(label||'').toLowerCase();
+      const picks = {
+        'código': ['codigo','código','cod','cod.'],
+        'codigo': ['codigo','código','cod','cod.'],
+        'departamento': ['departamento','depto'],
+        'provincia': ['provincia'],
+        'distrito': ['distrito'],
+        'estado': ['estado'],
+        'consignado': ['consignado','destinatario','cliente'],
+        'dirección consignado': ['direccion_consignado','dirección consignado','direccion consignado','direccion','dirección','address'],
+        'peso': ['peso'],
+        'teléfono': ['telefono','teléfono','celular','phone','cel'],
+        'telefono': ['telefono','teléfono','celular','phone','cel']
+      };
+      const keys = picks[lab] || [lab];
+      for (const k of keys){ if (r[k] != null && r[k] !== '') return r[k]; }
+      return '';
+    };
+    html += '<tr>' + ordenFinal.map(lbl=>{
+      if (lbl==='acciones'){
+        const telefonoLimpio = String(telefono||'').replace(/[^0-9]/g,'');
+        const telefonoForm = telefonoLimpio ? (telefonoLimpio.startsWith('51')?telefonoLimpio:('51'+telefonoLimpio)) : '';
+        return `<td class="text-center" style="white-space:nowrap;">`
+          + (telefonoForm? `<button class="btn btn-whatsapp btn-enviar-whatsapp" data-id="${esc(codigo)}" data-telefono="${esc(telefonoForm)}" data-cliente="${esc(cliente)}" data-estado="${esc(estado)}" style="padding:2px 6px; font-size:12px; background:#25D366; color:#fff; border:none; border-radius:3px; display:inline-flex; align-items:center; gap:4px;"><i class="fab fa-whatsapp" style="font-size:14px;"></i><span>Enviar</span></button>` : '')
+          + `</td>`;
+      }
+      const val = getVal(lbl);
+      return `<td>${esc(val)}</td>`;
+    }).join('') + '</tr>';
+  }
+  tbody.innerHTML = html;
+  // Sincronizar barra de desplazamiento inferior
+  try { initHScrollPaquetes(); } catch(_){ }
+  
+  // Inicializar los tooltips de Bootstrap para los botones de WhatsApp
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+}
+// Pinta headers y filas en #tablaPaquetes a partir de matriz [ [headers...], [row1...], ... ]
+function renderPaquetesDesdeExcel(rows) {
+    try {
+        if (!Array.isArray(rows) || rows.length < 2) { alert('Excel vacío'); return; }
+        const headersRaw = rows[0].map(h => String(h||'').trim());
+        const normalizar = (s)=> String(s||'').toLowerCase();
+        const mapeo = {
+            'código': 'codigo','codigo':'codigo','cod.':'codigo','cod':'codigo',
+            'departamento':'departamento','provincia':'provincia','distrito':'distrito',
+            'estado':'estado',
+            'consignado':'consignado','destinatario':'consignado','cliente':'consignado',
+            'dirección consignado':'direccion_consignado','direccion consignado':'direccion_consignado','direccion':'direccion_consignado','dirección':'direccion_consignado',
+            'peso':'peso',
+            'teléfono':'telefono','telefono':'telefono','celular':'telefono','phone':'telefono'
+        };
+        const keys = headersRaw.map(h => mapeo[normalizar(h)] || normalizar(h));
+        const objetos = rows.slice(1).map(arr => {
+            const o = {}; keys.forEach((k, i)=>{ if (k) o[k] = arr[i]; }); return o;
+        });
+        const headers = inferHeaders(objetos);
+        renderPaquetesDesdeBD(headers, objetos);
+    } catch(e){ console.error('renderPaquetesDesdeExcel', e); }
+}
+        // Funciones para cargar datos de empleados, vehículos y rutas
+        function cargarEmpleados() {
+            console.log('Cargando empleados...');
+            return fetch('php/admin.php?accion=empleados')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error HTTP: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Datos recibidos:', data);
+                    if (data.exito && Array.isArray(data.datos)) {
+                        mostrarEmpleados(data.datos);
+                    } else {
+                        const errorMsg = data.mensaje || 'Formato de datos inesperado';
+                        console.error('Error en la respuesta:', errorMsg);
+                        throw new Error(errorMsg);
+                    }
+                    return data;
+                })
+                .catch(error => {
+                    console.error('Error al cargar empleados:', error);
+                    // Mostrar mensaje de error al usuario
+                    alert('Error al cargar la lista de empleados. Por favor, intente nuevamente.');
+                    throw error; // Re-lanzar el error para que pueda ser manejado por quien llame a esta función
+                });
+        }
+        
+        function mostrarEmpleados(empleados) {
+            console.log('Mostrando empleados:', empleados);
+            const tbody = document.querySelector('#usuariosTable tbody');
+            if (!tbody) {
+                console.error('No se encontró el elemento tbody dentro de la tabla con ID "usuariosTable"');
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            if (!Array.isArray(empleados) || empleados.length === 0) {
+                const fila = document.createElement('tr');
+                fila.innerHTML = '<td colspan="8" class="text-center">No hay empleados registrados</td>';
+                tbody.appendChild(fila);
+                return;
+            }
+            
+            empleados.forEach(empleado => {
+                const fila = document.createElement('tr');
+                const fechaRegistro = empleado.fecha_registro ? new Date(empleado.fecha_registro).toLocaleDateString() : 'N/A';
+                const tipoUsuario = empleado.tipo === 'admin' ? 'Administrador' : 
+                                  empleado.tipo === 'asistente' ? 'Asistente' : 'Empleado';
+                
+                fila.innerHTML = `
+                    <td>${empleado.id || ''}</td>
+                    <td>${empleado.nombre || 'N/A'}</td>
+                    <td>${empleado.usuario || 'N/A'}</td>
+                    <td>${empleado.email || 'N/A'}</td>
+                    <td>${tipoUsuario}</td>
+                    <td><span class="estado estado-${empleado.activo ? 'activo' : 'inactivo'}">
+                        ${empleado.activo ? 'Activo' : 'Inactivo'}
+                    </span></td>
+                    <td>${fechaRegistro}</td>
+                    <td>
+                        <button class="btn btn-pequeno btn-secundario" onclick="eliminarEmpleado(${empleado.id})">Eliminar</button>
+                    </td>
+                `;
+                tbody.appendChild(fila);
+            });
+        }
+        
+        function cargarVehiculos() {
+            console.log('Iniciando carga de vehículos...');
+            return fetch('php/admin.php?accion=vehiculos')
+                .then(response => {
+                    console.log('Respuesta recibida, estado:', response.status);
+                    if (!response.ok) {
+                        throw new Error(`Error en la respuesta del servidor: ${response.status} ${response.statusText}`);
+                    }
+                    return response.json().catch(e => {
+                        console.error('Error al parsear JSON:', e);
+                        throw new Error('La respuesta no es un JSON válido');
+                    });
+                })
+                .then(data => {
+                    console.log('Datos recibidos de vehículos:', data);
+                    if (data && data.exito) {
+                        if (Array.isArray(data.datos)) {
+                            console.log(`Mostrando ${data.datos.length} vehículos`);
+                            mostrarVehiculos(data.datos);
+                        } else {
+                            console.error('Los datos no son un array:', data.datos);
+                            throw new Error('Formato de datos incorrecto: se esperaba un array de vehículos');
+                        }
+                    } else {
+                        const errorMsg = data && data.mensaje ? data.mensaje : 'Error desconocido';
+                        console.error('Error en la respuesta:', errorMsg);
+                        throw new Error(errorMsg);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en cargarVehiculos:', error);
+                    const tbody = document.getElementById('cuerpoTablaVehiculos');
+                    if (tbody) {
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="8" class="error">
+                                    Error al cargar vehículos: ${error.message}
+                                </td>
+                            </tr>`;
+                    }
+                    throw error; // Re-lanzar para manejo posterior si es necesario
+                });
+        }
+        
+        function mostrarVehiculos(vehiculos) {
+            const tbody = document.getElementById('cuerpoTablaVehiculos');
+            if (!tbody) { console.warn('No existe #cuerpoTablaVehiculos en el DOM'); return; }
+            tbody.innerHTML = '';
+            
+            if (!vehiculos || !Array.isArray(vehiculos)) {
+                console.error('Error: Los datos de vehículos no son válidos', vehiculos);
+                return;
+            }
+            
+            if (vehiculos.length === 0) {
+                const fila = document.createElement('tr');
+                fila.innerHTML = '<td colspan="8" class="texto-centrado">No hay vehículos registrados</td>';
+                tbody.appendChild(fila);
+                return;
+            }
+            
+            vehiculos.forEach(vehiculo => {
+                try {
+                    const fila = document.createElement('tr');
+                    const estadoClase = (vehiculo.estado || '').toLowerCase().replace(/ /g, '-');
+                    
+                    fila.innerHTML = `
+                        <td>${vehiculo.id || ''}</td>
+                        <td>${vehiculo.placa || ''}</td>
+                        <td>${vehiculo.marca || ''}</td>
+                        <td>${vehiculo.modelo || ''}</td>
+                        <td>${vehiculo.capacidad ? parseFloat(vehiculo.capacidad).toFixed(2) + ' kg' : '0.00 kg'}</td>
+                        <td>
+                            <span class="estado estado-${estadoClase}">
+                                ${vehiculo.estado_mostrar || vehiculo.estado || 'Desconocido'}
+                            </span>
+                        </td>
+                        <td>${vehiculo.empleado_nombre || 'Sin asignar'}</td>
+                        <td>
+                            <button class="btn btn-pequeno btn-secundario" 
+                                    onclick="eliminarVehiculo(${vehiculo.id})"
+                                    ${vehiculo.estado === 'en_ruta' ? 'disabled' : ''}>
+                                Eliminar
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(fila);
+                } catch (error) {
+                    console.error('Error al mostrar vehículo:', error, vehiculo);
+                }
+            });
+        }
+        
+        function cargarRutas() {
+            fetch('php/admin.php?accion=rutas')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exito) {
+                        mostrarRutas(data.datos);
+                    } else {
+                        console.error('Error al cargar rutas:', data.mensaje);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        
+        function mostrarRutas(rutas) {
+            const tbody = document.getElementById('cuerpoTablaRutas');
+            if (!tbody) { return; }
+            tbody.innerHTML = '';
+            
+            if (!rutas || !Array.isArray(rutas)) {
+                console.error('Error: Los datos de rutas no son válidos', rutas);
+                return;
+            }
+            
+            if (rutas.length === 0) {
+                const fila = document.createElement('tr');
+                fila.innerHTML = '<td colspan="7" class="texto-centrado">No hay rutas registradas</td>';
+                tbody.appendChild(fila);
+                return;
+            }
+            
+            rutas.forEach(ruta => {
+                const fila = document.createElement('tr');
+                const zonasTxt = (ruta.zonas || '').trim();
+                fila.innerHTML = `
+                    <td>${ruta.id}</td>
+                    <td>
+                        <div>${ruta.nombre}</div>
+                        ${zonasTxt ? `<small style="color:#6c757d;display:block;margin-top:4px;">Zonas: ${zonasTxt}</small>` : ''}
+                    </td>
+                    <td>${ruta.origen}</td>
+                    <td>${ruta.destino}</td>
+                    <td>${ruta.distancia}</td>
+                    <td>${ruta.tiempo_estimado}</td>
+                    <td>
+                        <button class="btn btn-pequeno btn-secundario" onclick="eliminarRuta(${ruta.id})">Eliminar</button>
+                    </td>
+                `;
+                tbody.appendChild(fila);
+            });
+        }
+
+        // Carga segura de rutas para la tabla de Configuración (tablaRutasConfig)
+        async function safeCargarRutasConfig(){
+            try {
+                const r = await fetch('php/admin.php?accion=rutas', { cache: 'no-store' });
+                const d = await r.json();
+                const tbody = document.getElementById('cuerpoTablaRutasConfig');
+                if (!tbody) { console.warn('No existe #cuerpoTablaRutasConfig'); return; }
+                tbody.innerHTML = '';
+                if (!d.exito || !Array.isArray(d.datos)) { return; }
+                d.datos.forEach((ruta)=>{
+                    const tr = document.createElement('tr');
+                    const zonasTxt = (ruta.zonas||'').trim();
+                    tr.innerHTML = `
+                        <td>${ruta.id}</td>
+                        <td>${ruta.nombre||''}</td>
+                        <td>${zonasTxt||''}</td>
+                        <td>
+                            <button class="btn btn-pequeno btn-primario" data-edit-route data-id="${ruta.id}">Editar</button>
+                            <button class="btn btn-pequeno btn-secundario" onclick="eliminarRuta(${ruta.id})">Eliminar</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch(e){ console.warn('safeCargarRutasConfig', e); }
+        }
+        
+        // Funciones para eliminar registros
+        function eliminarEmpleado(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este empleado?')) {
+                const formData = new FormData();
+                formData.append('accion', 'eliminar_empleado');
+                formData.append('id', id);
+                
+                fetch('php/admin.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exito) {
+                        alert('Empleado eliminado exitosamente');
+                        cargarEmpleados();
+                    } else {
+                        alert('Error al eliminar empleado: ' + data.mensaje);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al eliminar empleado');
+                });
+            }
+        }
+        
+        function eliminarVehiculo(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este vehículo?')) {
+                const formData = new FormData();
+                formData.append('accion', 'eliminar_vehiculo');
+                formData.append('id', id);
+                
+                fetch('php/admin.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exito) {
+                        alert('Vehículo eliminado exitosamente');
+                        cargarVehiculos();
+                    } else {
+                        alert('Error al eliminar vehículo: ' + data.mensaje);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al eliminar vehículo');
+                });
+            }
+        }
+        
+        function eliminarRuta(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta ruta?')) {
+                const formData = new FormData();
+                formData.append('accion', 'eliminar_ruta');
+                formData.append('id', id);
+                
+                fetch('php/admin.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exito) {
+                        alert('Ruta eliminada exitosamente');
+                        cargarRutas();
+                    } else {
+                        alert('Error al eliminar ruta: ' + data.mensaje);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al eliminar ruta');
+                });
+            }
+        }
+        
+        // Función para mostrar secciones
+        function mostrarSeccion(seccion, elemento) {
+            // Prevenir comportamiento por defecto del enlace si se provee elemento
+            try { if (elemento && elemento.preventDefault) { elemento.preventDefault(); } } catch(_) {}
+            
+            // No hacer nada si ya estamos en esa sección
+            const seccionActual = document.querySelector('.seccion.activa');
+            if (seccionActual && seccionActual.id === 'seccion-' + seccion) {
+                return false;
+            }
+            
+            // Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(s => s.classList.remove('activa'));
+            
+            // Mostrar la sección seleccionada
+            const seccionElemento = document.getElementById('seccion-' + seccion);
+            if (seccionElemento) {
+                seccionElemento.classList.add('activa');
+            }
+            
+            // Actualizar menú activo
+            const menuItems = document.querySelectorAll('.menu a');
+            menuItems.forEach(item => item.classList.remove('activo'));
+            
+            // Agregar clase activa al elemento clickeado
+            if (elemento) {
+                elemento.classList.add('activo');
+            }
+            
+            // Actualizar título
+            const titulos = {
+                'dashboard': 'Panel de Administración',
+                'empleados': 'Gestión de Empleados',
+                'vehiculos': 'Gestión de Vehículos',
+                'rutas': 'Gestión de Rutas',
+                'asignacion': 'Asignación',
+                'configuracion': 'Configuración',
+                'reportes': 'Reportes',
+                'pagos': 'Pagos Empleados',
+                'finanzas': 'Finanzas',
+                'tarifas': 'Tarifas por Zona'
+            };
+            document.getElementById('tituloSeccion').textContent = titulos[seccion] || 'Panel de Administración';
+            // Cargar datos específicos de la sección
+            if (seccion === 'asignacion') {
+                try { if (typeof cargarVistaAsignacion === 'function') cargarVistaAsignacion(); } catch(e){}
+            } else if (seccion === 'configuracion') {
+                try { if (typeof safeCargarRutasConfig === 'function') safeCargarRutasConfig(); } catch(e){}
+                try { if (typeof cargarEmpleados === 'function') cargarEmpleados(); } catch(e){}
+                try { if (typeof forceInitUsuarios === 'function') forceInitUsuarios(); } catch(e){}
+            } else if (seccion === 'finanzas') {
+                try { if (typeof cargarCaja === 'function') cargarCaja(); } catch(e){}
+                try { if (typeof cargarResumenIE === 'function') cargarResumenIE(); } catch(e){}
+                try { if (typeof cargarResumenHermes === 'function') cargarResumenHermes(); } catch(e){}
+            } else if (seccion === 'tarifas') {
+                try { if (typeof cargarTarifas === 'function') cargarTarifas(); } catch(e){}
+            }
+            
+            return false;
+        }
+
+        // Cerrar modales al hacer clic fuera de ellos
+        window.onclick = function(event) {
+            const modales = document.querySelectorAll('.modal');
+            modales.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Código para el menú móvil y carga de datos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del menú móvil
+            const btnMenu = document.getElementById('btnMenuMovil');
+            const barraLateral = document.getElementById('barraLateral');
+            const contenidoPrincipal = document.querySelector('.contenido-principal');
+            
+            // Cargar datos cuando se muestre la sección correspondiente
+            const secciones = document.querySelectorAll('.seccion');
+            const observador = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        switch(entry.target.id) {
+                            case 'seccion-empleados':
+                                cargarEmpleados().catch(console.error);
+                                break;
+                            case 'seccion-vehiculos':
+                                cargarVehiculos().catch(console.error);
+                                break;
+                            case 'seccion-configuracion':
+                                safeCargarRutasConfig();
+                                break;
+                            case 'seccion-asignacion':
+                                if (typeof cargarVistaAsignacion === 'function') cargarVistaAsignacion();
+                                break;
+                            // Agrega más casos según sea necesario
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observar cada sección
+            secciones.forEach(seccion => {
+                observador.observe(seccion);
+            });
+            
+            // Cargar empleados por defecto si estamos en la sección de empleados
+            if (window.location.hash === '#seccion-empleados') {
+                cargarEmpleados().catch(console.error);
+            }
+            let menuAbierto = false;
+
+            function toggleMenu() {
+                menuAbierto = !menuAbierto;
+                barraLateral.classList.toggle('activa', menuAbierto);
+                contenidoPrincipal.classList.toggle('desplazado', menuAbierto);
+                document.body.style.overflow = menuAbierto ? 'hidden' : '';
+                
+                // Cambiar ícono
+                const icono = btnMenu.querySelector('i');
+                if (menuAbierto) {
+                    icono.classList.remove('fa-bars');
+                    icono.classList.add('fa-times');
+                } else {
+                    icono.classList.remove('fa-times');
+                    icono.classList.add('fa-bars');
+                }
+            }
+
+            // Evento para el botón del menú
+            if (btnMenu) {
+                btnMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+            }
+
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (menuAbierto && !barraLateral.contains(e.target) && e.target !== btnMenu) {
+                    toggleMenu();
+                }
+            });
+
+            // Cerrar menú al redimensionar la ventana
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 992 && menuAbierto) {
+                        toggleMenu();
+                    }
+                }, 250);
+            });
+
+            // Prevenir navegación hacia atrás después de cerrar sesión
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function(event) {
+                window.history.pushState(null, null, window.location.href);
+            };
+
+            // Verificar sesión al cargar la página
+            fetch('php/verificar_sesion.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.sesion_activa || data.usuario.tipo !== 'admin') {
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    // Actualizar información del usuario
+                    document.getElementById('nombreUsuario').textContent = data.usuario.nombre;
+                    
+                    // Carga diferida: se ejecuta al entrar a cada sección
+                    cargarPaquetesDesdeBD();
+                    // Pre-cargar selects de Asignar
+                    cargarEmpleadosAsignar();
+                    cargarDistritosAsignar();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    window.location.href = 'login.html';
+                });
+        });
+    </script>
+    <script>
+    // Funciones de Asignación
+    async function cargarPaquetesSinAsignar() {
+        try {
+            const resp = await fetch('php/admin.php?accion=todos_paquetes', { cache: 'no-store' });
+            const raw = await resp.text();
+            let data; try { data = JSON.parse(raw); } catch(e){ console.error('Respuesta no JSON', raw); return; }
+            if (!data.exito) return;
+            const tbody = document.getElementById('cuerpoSinAsignar');
+            if (!tbody) return;
+            const sin = (data.datos || []).filter(p => !p.empleado_id);
+            tbody.innerHTML = sin.map(p => `
+                <tr>
+                    <td>${p.id}</td>
+                    <td>${p.codigo || ''}</td>
+                    <td>${p.destinatario || ''}</td>
+                    <td>${p.distrito || ''}</td>
+                    <td>${p.peso || ''}</td>
+                    <td>${p.telefono || ''}</td>
+                    <td>
+                        <button class="btn btn-pequeno btn-primario" onclick="reasignarPrompt(${p.id})">Reasignar</button>
+                        <button class="btn btn-whatsapp btn-enviar-whatsapp"
+                                style="margin-left:6px; padding:2px 6px; font-size:12px; background-color:#25D366; color:white; border:none; border-radius:3px; cursor:pointer; display:inline-flex; align-items:center; gap:4px;"
+                                data-id="${p.codigo || ''}"
+                                data-telefono="${(p.telefono||'').toString().trim()}"
+                                data-cliente="${(p.consignado||p.destinatario||'').toString().replace(/\"/g,'&quot;')}"
+                                data-estado="${(p.estado||'').toString()}">
+                          <i class="fab fa-whatsapp" style="font-size:14px;"></i>
+                          <span>Enviar</span>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        } catch (e) { console.error('cargarPaquetesSinAsignar', e); }
+    }
+    async function asignarPaquetesAuto() {
+        try {
+            const fd = new URLSearchParams(); fd.append('accion','asignar_paquetes_auto');
+            const r = await fetch('php/admin.php', { method:'POST', body: fd });
+            const d = await r.json();
+            let msg = `Asignación:\n- asignados=${d.asignados||0}\n- sin_ruta=${d.sin_ruta||0}\n- sin_empleado=${d.sin_empleado||0}`;
+            if (Array.isArray(d.detalle) && d.detalle.length) {
+                const sinRuta = d.detalle.filter(x=>x.motivo==='sin_ruta_para_distrito').slice(0,5);
+                if (sinRuta.length) {
+                    msg += `\n\nEjemplos sin ruta (distrito):\n` + sinRuta.map(x=>`• ${x.distrito}`).join('\n');
+                }
+            }
+            alert(msg);
+            await cargarPaquetesSinAsignar();
+            if (typeof cargarResumenAsignados === 'function') { await cargarResumenAsignados(); }
+        } catch(e){ console.error('asignarPaquetesAuto', e); alert('Error asignando'); }
+    }
+    async function reasignarPrompt(paqueteId){
+        try {
+            const empleadoId = prompt('ID de empleado destino:');
+            if (!empleadoId) return;
+            const fd = new FormData();
+            fd.append('accion','reasignar_paquete');
+            fd.append('paquete_id', paqueteId);
+            fd.append('empleado_id', empleadoId);
+            const r = await fetch('php/admin.php', { method:'POST', body: fd });
+            const d = await r.json();
+            if (!d.exito) { alert(d.mensaje || 'No se pudo reasignar'); return; }
+            await cargarPaquetesSinAsignar();
+            if (typeof cargarResumenAsignados === 'function') { await cargarResumenAsignados(); }
+        } catch(e){ console.error('reasignarPrompt', e); }
+    }
+    // Enlazar botón
+    document.getElementById('btnAsignarAuto')?.addEventListener('click', asignarPaquetesAuto);
+    document.getElementById('btnRefrescarSinAsignar')?.addEventListener('click', function(){ cargarPaquetesSinAsignar(); });
+    document.getElementById('btnLimpiarAsignaciones')?.addEventListener('click', async function(){
+      try{
+        const r = await fetch('php/admin.php?accion=limpiar_asignaciones', { cache:'no-store' });
+        const d = await r.json();
+        if (!d.exito){ alert(d.mensaje || 'No se pudo limpiar'); return; }
+        const a = d.limpiados?.paquetes || 0; const b = d.limpiados?.paquetes_json || 0;
+        alert(`Limpieza completada. Paquetes sin asignar: ${a+b} (paquetes: ${a}, paquetes_json: ${b})`);
+        await cargarPaquetesSinAsignar();
+        if (typeof cargarResumenAsignados==='function') await cargarResumenAsignados();
+      }catch(e){ console.error('limpiar_asignaciones', e); alert('Error al limpiar'); }
+    });
+    </script>
+    
+    <!-- jQuery (debe cargarse primero) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- DataTables y sus dependencias -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    
+    <!-- Bibliotecas para exportación -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Nuestros scripts -->
+    <script src="js/gestion_usuarios.js?v=20251030-3"></script>
+    <script src="js/exportar.js"></script>
+    
+    <!-- Inicialización de la página -->
+    <script>
+        $(document).ready(function() {
+            // Verificar que todas las dependencias estén cargadas
+            if (typeof jQuery == 'undefined') {
+                console.error('Error: jQuery no se ha cargado correctamente');
+            } else {
+                console.log('jQuery versión:', $.fn.jquery);
+            }
+            
+            if (typeof bootstrap === 'undefined') {
+                console.error('Error: Bootstrap no se ha cargado correctamente');
+            } else {
+                console.log('Bootstrap cargado correctamente');
+            }
+            
+            // Cargar datos iniciales si es necesario
+            if (window.location.hash) {
+                const seccion = window.location.hash.substring(1);
+                const elementoMenu = document.querySelector(`a[onclick*="${seccion}"]`);
+                if (elementoMenu) {
+                    mostrarSeccion(seccion, elementoMenu);
+                }
+            } else {
+                // Por defecto, mostrar el dashboard
+                mostrarSeccion('dashboard', document.querySelector('a[onclick*="dashboard"]'));
+            }
+        });
+    </script>
+    
+    <!-- Modal Editar Ruta -->
+    <div id="modalEditarRuta" class="modal" style="display:none;">
+        <div class="modal-contenido">
+            <h3>Editar Ruta</h3>
+            <form id="formEditarRuta">
+                <input type="hidden" id="editarRutaId">
+                <div class="grupo-form">
+                    <label for="editarRutaNombre">Nombre</label>
+                    <input type="text" id="editarRutaNombre" required>
+                </div>
+                <div class="grupo-form">
+                    <label for="editarRutaZonas">Zonas (separadas por comas)</label>
+                    <textarea id="editarRutaZonas" rows="4"></textarea>
+                </div>
+                <div class="modal-acciones">
+                    <button type="button" class="btn btn-secundario" onclick="(function(){ const m=document.getElementById('modalEditarRuta'); if(m) m.style.display='none'; if (typeof cerrarModal==='function') cerrarModal('modalEditarRuta'); })()">Cancelar</button>
+                    <button type="submit" class="btn btn-primario">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    // Enlazar submit del formulario del modal
+    (function(){
+        const form = document.getElementById('formEditarRuta');
+        if (!form) return;
+        form.addEventListener('submit', async function(e){
+            e.preventDefault();
+            const id = document.getElementById('editarRutaId').value;
+            const nombre = document.getElementById('editarRutaNombre').value.trim();
+            const zonas = document.getElementById('editarRutaZonas').value.trim();
+            if (!id || !nombre) { alert('ID y Nombre son obligatorios'); return; }
+            // Caso: rutas constantes (ID con prefijo CONST-): actualizar solo la vista
+            if (String(id).startsWith('CONST-')) {
+                try {
+                    const row = window.__editConstTarget; // tr
+                    if (row) {
+                        const celdas = row.querySelectorAll('td');
+                        if (celdas[1]) celdas[1].textContent = nombre; // columna Nombre
+                        if (celdas[2]) celdas[2].textContent = zonas;   // columna Zonas
+                        // Actualizar datos del botón
+                        const btn = row.querySelector('button.btn.btn-pequeno.btn-primario');
+                        if (btn) {
+                            btn.setAttribute('data-nombre', nombre);
+                            btn.setAttribute('data-zonas', zonas);
+                        }
+                    }
+                    if (typeof cerrarModal === 'function') cerrarModal('modalEditarRuta');
+                    else { const m=document.getElementById('modalEditarRuta'); if (m) m.style.display='none'; }
+                    alert('Ruta constante actualizada en la vista.');
+                } catch(err){ console.error('Actualizar ruta constante', err); }
+                return; // No enviar al servidor
+            }
+            const fd = new FormData();
+            fd.append('accion','actualizar_ruta');
+            fd.append('id', id);
+            fd.append('nombre', nombre);
+            fd.append('zonas', zonas);
+            try{
+                const r = await fetch('php/admin.php', { method:'POST', body: fd });
+                const d = await r.json();
+                if (!d.exito) { alert(d.mensaje || 'No se pudo actualizar'); return; }
+                if (typeof cerrarModal === 'function') cerrarModal('modalEditarRuta');
+                const modal = document.getElementById('modalEditarRuta');
+                if (modal) modal.style.display='none';
+                if (typeof window.cargarRutasConfig === 'function') window.cargarRutasConfig();
+            } catch(err){ console.error('Actualizar ruta', err); alert('Error al actualizar ruta'); }
+        });
+    })();
+    </script>
+    
+    <!-- Renderizador principal de rutas desde constantes -->
+    <script>
+    (function(){
+        function esc(s){ return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+        window.cargarRutasConfig = function(){
+            try {
+                const tbody = document.getElementById('cuerpoTablaRutasConfig');
+                if (!tbody) return;
+                if (!window.RUTAS) { tbody.innerHTML = '<tr><td colspan="4">RUTAS no disponible</td></tr>'; return; }
+                const filas = [];
+                let idx = 1;
+                Object.keys(RUTAS).forEach(nombreRuta => {
+                    const zonas = Array.isArray(RUTAS[nombreRuta]) ? RUTAS[nombreRuta] : [];
+                    const id = idx++;
+                    filas.push(`
+                        <tr>
+                            <td>${id}</td>
+                            <td>${esc(nombreRuta)}</td>
+                            <td style="white-space:pre-wrap">${esc(zonas.join(', '))}</td>
+                            <td>
+                                <button class="btn btn-pequeno btn-primario" title="Editar"
+                                    data-id="CONST-${id}"
+                                    data-nombre="${esc(nombreRuta)}"
+                                    data-zonas="${esc(zonas.join(', '))}"
+                                    onclick="editarRutaConstante(this)">Editar</button>
+                            </td>
+                        </tr>`);
+                });
+                tbody.innerHTML = filas.join('');
+            } catch(e){ console.error('cargarRutasConfig (constantes)', e); }
+        };
+    })();
+    </script>
+    <script>
+    // Abrir modal para editar una ruta constante (solo edición visual)
+    if (typeof window.editarRutaConstante === 'undefined') {
+        window.editarRutaConstante = function(btn){
+            try{
+                const id = btn.getAttribute('data-id') || '';
+                const nombre = btn.getAttribute('data-nombre') || '';
+                const zonas = btn.getAttribute('data-zonas') || '';
+                document.getElementById('editarRutaId').value = id; // ej: CONST-1
+                document.getElementById('editarRutaNombre').value = nombre;
+                document.getElementById('editarRutaZonas').value = zonas;
+                window.__editConstTarget = btn.closest('tr');
+                if (typeof abrirModal === 'function') abrirModal('modalEditarRuta');
+                else { const m=document.getElementById('modalEditarRuta'); if (m) m.style.display='block'; }
+            }catch(e){ console.error('editarRutaConstante', e); }
+        }
+    }
+    </script>
+    
+    <!-- Script para el envío de notificaciones por WhatsApp -->
+    <script src="js/enviar-notificacion.js"></script>
+    
+    <!-- Fallback: define cargarRutasConfig si aún no existe -->
+    <script>
+    if (typeof window.cargarRutasConfig === 'undefined') {
+        window.cargarRutasConfig = async function() {
+            try {
+                const resp = await fetch('php/admin.php?accion=rutas', { cache: 'no-store' });
+                const data = await resp.json();
+                const tbody = document.getElementById('cuerpoTablaRutasConfig');
+                if (!tbody) return;
+                const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                if (!data.exito || !Array.isArray(data.datos) || !data.datos.length) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="texto-centrado">Sin rutas</td></tr>';
+                    return;
+                }
+                tbody.innerHTML = data.datos.map(r => {
+                    const id = esc(r.id);
+                    const zonas = esc(r.zonas || '');
+                    const nombre = esc(r.nombre || '');
+                    return `
+                        <tr>
+                            <td>${id}</td>
+                            <td>${nombre}</td>
+                            <td style="white-space:pre-wrap">${zonas}</td>
+                            <td>
+                                <button class="btn btn-pequeno btn-primario"
+                                    data-id="${id}" data-nombre="${nombre}" data-zonas="${zonas}"
+                                    onclick="_editarRutaInline(this)">Editar</button>
+                                <button class="btn btn-pequeno btn-secundario"
+                                    data-id="${id}"
+                                    onclick="_eliminarRutaConfig(this)">Eliminar</button>
+                            </td>
+                        </tr>`;
+                }).join('');
+            } catch (e) { console.error('fallback cargarRutasConfig', e); }
+        };
+    }
+    // Handlers globales usados por los botones del fallback
+    if (typeof window._editarRutaInline === 'undefined') {
+        window._editarRutaInline = function(btn){
+            try{
+                document.getElementById('editarRutaId').value = btn.getAttribute('data-id') || '';
+                document.getElementById('editarRutaNombre').value = btn.getAttribute('data-nombre') || '';
+                document.getElementById('editarRutaZonas').value = btn.getAttribute('data-zonas') || '';
+                if (typeof abrirModal === 'function') {
+                    abrirModal('modalEditarRuta');
+                } else {
+                    const m = document.getElementById('modalEditarRuta');
+                    if (m) m.style.display='block';
+                }
+            } catch(e){ console.error('EditarRutaInline', e); }
+        };
+    }
+    if (typeof window._eliminarRutaConfig === 'undefined') {
+        window._eliminarRutaConfig = async function(btn){
+            const id = btn.getAttribute('data-id');
+            if (!id) return;
+            if (!confirm('¿Eliminar esta ruta?')) return;
+            const fd = new FormData();
+            fd.append('accion','eliminar_ruta');
+            fd.append('id', id);
+            try{
+                const r = await fetch('php/admin.php', { method: 'POST', body: fd });
+                const d = await r.json();
+                if (!d.exito) { alert(d.mensaje || 'No se pudo eliminar'); return; }
+                if (typeof window.cargarRutasConfig === 'function') window.cargarRutasConfig();
+            } catch(e){ console.error(e); alert('Error eliminando ruta'); }
+        };
+    }
+    </script>
+
+    <!-- Función para cargar archivos Excel -->
+    <script>
+    // Función para formatear el tamaño del archivo en un formato legible
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Función para formatear la fecha
+    function formatDate(dateString) {
+        const options = { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric',
+            hour: '2-digit', 
+            minute: '2-digit' 
+        };
+        return new Date(dateString).toLocaleDateString('es-ES', options);
+    }
+
+    // Función para cargar la lista de archivos Excel
+    window.cargarArchivosExcel = async function() {
+        try {
+            const response = await fetch('php/admin.php?accion=listar_archivos_excel');
+            const data = await response.json();
+            
+            if (data.exito) {
+                const tbody = document.getElementById('cuerpoTablaArchivos');
+                if (!tbody) return;
+                
+                // Ordenar por fecha de modificación (más reciente primero)
+                const archivos = data.archivos.sort((a, b) => 
+                    new Date(b.fecha_modificacion) - new Date(a.fecha_modificacion)
+                );
+                
+                tbody.innerHTML = archivos.map(archivo => {
+                    const nombre = archivo.nombre;
+                    const ruta = 'downloads/' + nombre;
+                    const tamano = formatFileSize(archivo.tamano);
+                    const fecha = formatDate(archivo.fecha_modificacion);
+                    
+                    return `
+                        <tr>
+                            <td>${nombre}</td>
+                            <td>${tamano}</td>
+                            <td>${fecha}</td>
+                            <td>
+                                <a href="${ruta}" class="btn btn-pequeno btn-primario" download>
+                                    <i class="fas fa-download"></i> Descargar
+                                </a>
+                                <button class="btn btn-pequeno btn-secundario" onclick="verArchivo('${nombre}')">
+                                    <i class="fas fa-eye"></i> Ver
+                                </button>
+                            </td>
+                        </tr>`;
+                }).join('');
+            } else {
+                console.error('Error al cargar archivos:', data.mensaje);
+                alert('Error al cargar la lista de archivos: ' + (data.mensaje || 'Error desconocido'));
+            }
+        } catch (error) {
+            console.error('Error en cargarArchivosExcel:', error);
+            alert('Error al cargar la lista de archivos. Por favor, intente de nuevo.');
+        }
+    };
+
+    // Función para ver el contenido de un archivo
+    window.verArchivo = function(nombreArchivo) {
+        // Aquí puedes implementar la lógica para mostrar el contenido del archivo
+        // Por ejemplo, abrir un modal con una vista previa o redirigir a una página de vista previa
+        window.open('ver_archivo.php?archivo=' + encodeURIComponent(nombreArchivo), '_blank');
+    };
+
+    // Función para cargar y mostrar los archivos Excel
+    async function cargarArchivosExcel() {
+        try {
+            const contenedor = document.getElementById('contenedor-archivos-excel');
+            if (!contenedor) return;
+            
+            // Mostrar indicador de carga
+            contenedor.innerHTML = '<div class="text-center py-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div><p class="mt-2">Cargando archivos...</p></div>';
+            
+            // Hacer la petición al servidor
+            const response = await fetch('php/admin.php?accion=listar_archivos_excel');
+            const data = await response.json();
+            
+            if (!data.exito) {
+                throw new Error(data.mensaje || 'Error al cargar los archivos');
+            }
+            
+            // Si no hay archivos
+            if (!data.archivos || data.archivos.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        No se encontraron archivos Excel en la carpeta de descargas.
+                    </div>`;
+                return;
+            }
+            
+            // Construir la tabla de archivos
+            let html = `
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre del archivo</th>
+                            <th>Tamaño</th>
+                            <th>Fecha de modificación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+            
+            // Agregar cada archivo a la tabla
+            data.archivos.forEach(archivo => {
+                const nombreArchivo = archivo.nombre;
+                // Asegurarse de que la ruta incluya el directorio downloads/
+                let rutaParaFrontend = archivo.ruta || '';
+                if (!rutaParaFrontend.includes('downloads/')) {
+                    rutaParaFrontend = `downloads/${nombreArchivo}`;
+                }
+                
+                html += `
+                    <tr>
+                        <td>${nombreArchivo}</td>
+                        <td>${archivo.tamano_formateado}</td>
+                        <td>${new Date(archivo.fecha_modificacion).toLocaleString()}</td>
+                        <td>
+                            <a href="${rutaParaFrontend}" class="btn btn-sm btn-primary me-2" download>
+                                <i class="fas fa-download"></i> Descargar
+                            </a>
+                            <button class="btn btn-sm btn-info" onclick="verArchivo('${encodeURIComponent(rutaParaFrontend)}')">
+                                <i class="fas fa-eye"></i> Ver
+                            </button>
+                            <div class="d-none ruta-completa">${rutaParaFrontend}</div>
+                        </td>
+                    </tr>`;
+            });
+            
+            html += `
+                    </tbody>
+                </table>
+            </div>`;
+            
+            contenedor.innerHTML = html;
+            
+        } catch (error) {
+            console.error('Error al cargar archivos Excel:', error);
+            const contenedor = document.getElementById('contenedor-archivos-excel');
+            if (contenedor) {
+                contenedor.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Error al cargar los archivos: ${error.message}
+                    </div>`;
+            }
+        }
+    }
+    
+    // Función para ver el contenido de un archivo
+    function verArchivo(nombreArchivo) {
+        // Extraer solo el nombre del archivo (por si viene con ruta)
+        const nombreArchivoLimpio = nombreArchivo.split('/').pop().split('\\').pop();
+        
+        // Construir la URL para ver el archivo
+        const url = new URL(`ver_archivo.php?archivo=${encodeURIComponent(nombreArchivoLimpio)}`, window.location.origin + window.location.pathname.replace('paneladmin.html', ''));
+        console.log('Intentando acceder a:', url.toString()); // Para depuración
+        
+        // Abrir en una nueva pestaña
+        window.open(url, '_blank');
+    }
+    
+    // Hacer las funciones accesibles globalmente
+    window.cargarArchivosExcel = cargarArchivosExcel;
+    window.verArchivo = verArchivo;
+    
+    // Cargar los archivos cuando se muestre la sección
+    document.addEventListener('DOMContentLoaded', function() {
+        // Agregar un observador para cargar los archivos cuando se muestre la sección
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id === 'seccion-archivos-excel') {
+                    cargarArchivosExcel();
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        const seccionArchivos = document.getElementById('seccion-archivos-excel');
+        if (seccionArchivos) {
+            observer.observe(seccionArchivos);
+        }
+    });
+    </script>
+</body>
+</html>
