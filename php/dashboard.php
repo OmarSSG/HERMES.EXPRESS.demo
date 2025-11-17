@@ -96,7 +96,7 @@ function obtenerRutas() {
     global $pdo;
     
     try {
-        $stmt = $pdo->query("SELECT * FROM rutas WHERE activa = 1 ORDER BY nombre");
+        $stmt = $pdo->query("SELECT * FROM rutas WHERE activa = 1 ORDER BY id ASC");
         $rutas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         echo json_encode(['exito' => true, 'datos' => $rutas]);

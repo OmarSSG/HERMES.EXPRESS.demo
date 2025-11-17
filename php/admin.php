@@ -699,7 +699,7 @@ function obtenerRutas() {
     try {
         $stmt = $pdo->query("
             SELECT * FROM rutas 
-            ORDER BY nombre
+            ORDER BY id ASC
         ");
         $rutas = $stmt->fetchAll();
         
