@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function initTablaUsuarios() {
         const $tablaUsuarios = $('#usuariosTable');
         if ($tablaUsuarios.length === 0) return false;
+        // Verificar que DataTables esté cargado antes de usarlo
+        const hasDT = (typeof $ !== 'undefined') && $.fn && $.fn.dataTable && typeof $.fn.dataTable.isDataTable === 'function';
+        if (!hasDT) {
+            return false;
+        }
         if ($.fn.dataTable.isDataTable('#usuariosTable')) {
             // Si ya existe, intenta referenciar la instancia global
             if (!window.usuariosDT) {
