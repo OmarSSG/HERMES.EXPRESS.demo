@@ -530,3 +530,35 @@ No se encontraron archivos Excel en el escritorio
 [2025-11-18 14:45:43] CODE: 1
 OUT:
 No se encontraron archivos Excel en el escritorio
+[2025-11-18 16:10:19] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-11-18 16:10:19] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-18 16:10:19] SKIP inexistente: C:\Python313\python.exe
+[2025-11-18 16:10:19] SKIP inexistente: C:\Python312\python.exe
+[2025-11-18 16:10:19] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS.demo\import_excel_to_db.py" 2>&1
+[2025-11-18 16:10:21] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-18 16:10:21] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS.demo\import_excel_to_db.py" 2>&1
+[2025-11-18 16:10:22] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-18 16:10:22] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS.demo\import_excel_to_db.py" 2>&1
+[2025-11-18 16:10:24] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-18 16:23:57] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python313\python.exe
+[2025-11-18 16:23:57] SKIP inexistente: C:\Users\JULIO DME\AppData\Local\Programs\Python\Python312\python.exe
+[2025-11-18 16:23:57] SKIP inexistente: C:\Python313\python.exe
+[2025-11-18 16:23:57] SKIP inexistente: C:\Python312\python.exe
+[2025-11-18 16:23:57] PROBANDO: python "C:\xampp\htdocs\HERMES.EXPRESS.demo\import_excel_to_db.py" 2>&1
+[2025-11-18 16:23:59] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-18 16:23:59] PROBANDO: py -3 "C:\xampp\htdocs\HERMES.EXPRESS.demo\import_excel_to_db.py" 2>&1
+[2025-11-18 16:24:00] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
+[2025-11-18 16:24:00] PROBANDO: py "C:\xampp\htdocs\HERMES.EXPRESS.demo\import_excel_to_db.py" 2>&1
+[2025-11-18 16:24:02] CODE: 1
+OUT:
+No se encontraron archivos Excel en el escritorio
